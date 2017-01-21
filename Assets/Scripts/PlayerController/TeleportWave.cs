@@ -10,17 +10,29 @@ public class TeleportWave : MonoBehaviour
 
     // Update is called once per frame
     void Update ()
-    {     
+    {
+        Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward, Color.red);
+
+        //TELEPORT 
         if (Input.GetMouseButtonDown(0))
         {
-            ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+           
 
-            if (Physics.Raycast(ray.origin, ray.direction, out hit, 1000f, floorMask))
+            if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, 100f, floorMask))
             {
+                
+
                 Debug.Log(hit.point);
-                if (VoiceLightShader2.Instance.isThisPositionOk(hit.point))
-                    this.transform.position = hit.point;
+                //if (VoiceLightShader2.Instance.isThisPositionOk(hit.point))
+                this.transform.position = hit.point;
             }
+        }
+
+        //FORZO ALTEZZA
+        if (Physics.Raycast(this.transform.position, Vector3.down, out hit, 10f, floorMask))
+        {
+            Debug.DrawLine(this.transform.position, hit.point, Color.green);
+            this.transform.position=new Vector3(this.transform.position.x,this.transform.position.y,this.transform.position.z);
         }
         
     }

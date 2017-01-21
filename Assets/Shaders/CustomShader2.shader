@@ -52,7 +52,7 @@ Shader "Custom/roomShader" {
 					if( distMesh<distP )
 					{
 						half ri = _Properties[i].x;
-						half hi = 1 - saturate(distMesh / distP);
+						half hi = 1 - saturate(distMesh / (distP-ri));
 						h += hi * _Properties[i].y;
 					}
 				}
