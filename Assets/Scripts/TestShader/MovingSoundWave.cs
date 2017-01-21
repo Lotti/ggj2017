@@ -6,10 +6,10 @@ public class MovingSoundWave : MonoBehaviour {
 
 
 	public Vector3 StartPosition;
-	public float life = 2;
+	public float life = 5;
 	private float startTime=0;
 
-	public float speed=10;
+	public float speed=9;
 	// Use this for initialization
 	void Start () 
 	{
