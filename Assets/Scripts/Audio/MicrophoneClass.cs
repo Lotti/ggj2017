@@ -37,7 +37,7 @@ public class MicrophoneClass : MonoBehaviour {
 		}
 		var rms = Mathf.Sqrt ( ( float )m / ( float )spectrum.Length );
 		var dB = 20 * Mathf.Log ( rms / rmsRef, 10f );
-		if ( dB >= -5f && !_isScreaming ) {
+		if ( dB >= -3f && !_isScreaming ) {
 			_isScreaming = true;
 			Debug.LogWarning ( "STRILLOOOOO!!!" );
 			if ( OnScream != null ) {
@@ -49,7 +49,7 @@ public class MicrophoneClass : MonoBehaviour {
 
 	IEnumerator _WaitForScream () {
 		float timeStart = Time.time;
-		while ( ( Time.time - timeStart ) <= 2f ) {
+		while ( ( Time.time - timeStart ) <= 3f ) {
 			yield return null;
 		}
 		Debug.LogWarning ( "XXX => STRILLOOOOO!!!" );
