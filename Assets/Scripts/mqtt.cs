@@ -11,10 +11,12 @@ using uPLibrary.Networking.M2Mqtt.Exceptions;
 public class mqtt : MonoBehaviour {
 
 	private MqttClient client;
+	private string serverHost = "localhost";
+	private int port = 1883;
 
 	void Awake () {
 		// create client instance 
-		client = new MqttClient("localhost", 1883, false, null); 
+		client = new MqttClient(serverHost, port, false, null); 
 
 		string clientId = Guid.NewGuid().ToString(); 
 		client.Connect(clientId); 	
@@ -37,8 +39,8 @@ public class mqtt : MonoBehaviour {
 		client.Subscribe(new string[] { "warmup" }, new byte[] { MqttMsgBase.QOS_LEVEL_AT_LEAST_ONCE }); 
 	}
 
-	void client_MqttMsgReceived(object sender, MqttMsgPublishEventArgs e) { 
-		Debug.Log("Received -> " + e.Topic + ": "+ System.Text.Encoding.UTF8.GetString(e.Message));
+	void client_MqttMsgReceived(object client, MqttMsgPublishEventArgs e) { 
+		Debug.Log ("Received -> " + e.Topic + ": "+ System.Text.Encoding.UTF8.GetString(e.Message));
 	} 
 
 	void sendMessage(string topic, string message) {
