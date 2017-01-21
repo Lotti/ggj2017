@@ -29,11 +29,11 @@ public class TeleportWave : MonoBehaviour
         }
 
         //FORZO ALTEZZA
-       /* if (Physics.Raycast(this.transform.position, Vector3.down, out hit, 10f, floorMask))
+        if (Physics.Raycast(this.transform.position, Vector3.down, out hit, 10f, floorMask))
         {
             Debug.DrawLine(this.transform.position, hit.point, Color.green);
-            this.transform.position=new Vector3(this.transform.position.x,0,this.transform.position.z);
+            this.transform.position=new Vector3(this.transform.position.x,this.transform.position.y,this.transform.position.z);
         }
-        */
+        
     }
 }
