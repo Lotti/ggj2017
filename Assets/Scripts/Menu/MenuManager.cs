@@ -8,8 +8,6 @@ public class MenuManager : MonoBehaviour
 
     public Text txt;
 
-
-
     public GameObject menu,button;
 
     private string playText = "Play";
