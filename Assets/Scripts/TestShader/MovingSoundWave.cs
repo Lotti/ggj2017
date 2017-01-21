@@ -11,7 +11,9 @@ public class MovingSoundWave : MonoBehaviour {
 
 	public float speed=10;
 	// Use this for initialization
-	void Start () {
+	void Start () 
+	{
+		
 		startTime = Time.deltaTime;
 	}
 	
@@ -27,6 +29,11 @@ public class MovingSoundWave : MonoBehaviour {
 		{
 			this.transform.position = this.transform.position + this.transform.forward * this.speed * Time.deltaTime;
 		}
+	}
+
+	public bool IsThisPointOk(Vector3 point)
+	{
+		return (point - this.transform.position).sqrMagnitude < (remainingLife * remainingLife);
 	}
 
 	public float remainingLife
