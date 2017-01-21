@@ -44,7 +44,7 @@ public class VoiceLightShader2 : Singleton<VoiceLightShader2> {
 
 	public void SpawnVoid( Vector3 direction ){
 	
-		if (this.go.Count < 6)
+		if (this.go.Count < 15)
 		{
 			var newGo = new GameObject ();
 			var msw=newGo.AddComponent<MovingSoundWave> ();
@@ -54,7 +54,8 @@ public class VoiceLightShader2 : Singleton<VoiceLightShader2> {
 			msw.StartPosition=this.playerT.transform.position;
 			this.go.Add (msw);
 
-			if (OnAllucco != null) {
+			if (OnAllucco != null) 
+			{
 				OnAllucco (this.playerT);
 			}
 		}
@@ -62,12 +63,7 @@ public class VoiceLightShader2 : Singleton<VoiceLightShader2> {
 
 	public bool isThisPositionOk(Vector3 raycastTarget)
 	{
-		foreach( var g in this.go )
-		{
-			if (g.IsThisPointOk (raycastTarget))
-				return true;
-		}
-		return false;
+		return this.go.Count > 0;
 	}
 
 	public List<int> toDel=new List<int>();
@@ -95,7 +91,7 @@ public class VoiceLightShader2 : Singleton<VoiceLightShader2> {
 		foreach (var m in this.materials) {
 			m.SetInt("_Points_Length" , go.Count);
 		}
-		//this.renderers[0].sharedMaterial.SetInt("_Points_Length" , go.Count);
+		
 		if (go.Count > 0) {
 			
 			var vPos = new Vector4[20];
@@ -108,7 +104,7 @@ public class VoiceLightShader2 : Singleton<VoiceLightShader2> {
 
 				vPos[i] = waveGO.transform.position;
 				vStartPos [i] = waveGO.StartPosition;
-				properties[i] = new Vector2(3f, waveGO.remainingLife );
+				properties[i] = new Vector2(waveGO.radius, waveGO.remainingLife );
 
 			}
 
