@@ -14,6 +14,11 @@ public class mqtt : MonoBehaviour {
 	private string serverHost = "localhost";
 	private int port = 1883;
 
+	class WarmupPackage {
+		public string clientId;
+		public int playerType;
+	}
+
 	void Awake () {
 		// create client instance 
 		client = new MqttClient(serverHost, port, false, null); 
