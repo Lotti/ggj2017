@@ -38,7 +38,11 @@ public class Networking : Singleton<Networking> {
 		}
 
 		public static RoomPackage fromDictionary(Dictionary<string, object> d) {
-			return new RoomPackage();
+			if (d.ContainsKey ("counter")) {
+				return new RoomPackage(Convert.ToInt32(d["counter"]));	
+			} else {
+				return null;
+			}
 		}
 	}
 
@@ -83,7 +87,7 @@ public class Networking : Singleton<Networking> {
 		if (time >= timeHello) {
 			time = 0f;
 			// TODO Invia i dati di gioco
-			sendMessage(this.topic, new RoomPackage().ToString());
+			sendMessage(this.topic, new RoomPackage(++msgCounter).ToString());
 		}
 	}
 
@@ -104,15 +108,5 @@ public class Networking : Singleton<Networking> {
 		msgCounter = 0;
 		this.topic = topic;
 		client.Subscribe(new string[] { this.topic }, new byte[] { MqttMsgBase.QOS_LEVEL_AT_LEAST_ONCE });
-	}
-
-	void OnGUI() {
-		if (GUI.Button (new Rect (20,40,250,250), "WARMUP P1")) {
-			string topic = this.playAsPlayer1();
-			Debug.Log("topic", topic);
-		}
-		if (GUI.Button (new Rect (270,40,250,250), "WARMUP P2")) {
-			this.playAsPlayer2();
-		}
 	}
 }
