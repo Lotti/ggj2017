@@ -4,48 +4,26 @@ using UnityEngine;
 
 public class MenuManager : MonoBehaviour
 {
-    public bool gameInPause = false;
+	public GameObject menu, phoneButton, vrButton;
+	public enum PlayerType { PHONE, VR };
 
-    public Text txt;
-
-    public GameObject menu;
-
-    private string playText = "Play";
-
-    private string quitText = "Quit";
-
-    void Awake()
+	void Awake()
     {
-        ManagerSizeText();
+		phoneButton.GetComponent<Button>().onClick.AddListener(delegate { Play(PlayerType.PHONE); });
+		vrButton.GetComponent<Button>().onClick.AddListener(delegate { Play(PlayerType.VR); });
     }
 
-    void Update()
-    {
-        ManagerText();
-    }
-    
-    private void Play()
+	private void Play(PlayerType plrType)
     {
         menu.SetActive(false);
-        gameInPause = false;
-    }
-
-    private void Quit()
-    {
-        menu.SetActive(true);
-        gameInPause = true;
-    }
-
-    private void ManagerText()
-    {
-        if (!gameInPause)
-            txt.GetComponent<Text>().text = playText;
-        else if(gameInPause)
-            txt.GetComponent<Text>().text = quitText;       
-    }
-
-    private void ManagerSizeText()
-    {
-        txt.GetComponent<Text>().fontSize = 32;
+		switch (plrType) {
+			case PlayerType.PHONE:
+				// carica scena telefono
+				break;
+			case PlayerType.VR:
+				// carica scena vr
+				break;
+		}
+		Debug.Log ("scena " + plrType + " caricata");
     }
 }
