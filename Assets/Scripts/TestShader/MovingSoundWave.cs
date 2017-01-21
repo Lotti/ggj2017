@@ -4,22 +4,35 @@ using UnityEngine;
 
 public class MovingSoundWave : MonoBehaviour {
 
-	public float life = 4;
-	private float startTime = 0;
 
-	public float speed=3;
+	public Vector3 StartPosition;
+	public float life = 2;
+	private float startTime=0;
+
+	public float speed=10;
 	// Use this for initialization
 	void Start () {
-		startTime = Time.time;
+		startTime = Time.deltaTime;
 	}
 	
 	// Update is called once per frame
-	void Update () {
-		if (Time.time > startTime + life) {
+	void Update () 
+	{
+		startTime += Time.deltaTime;
+		if (startTime > life) 
+		{
 			Destroy (this.gameObject);
-		} else {
-            
+		} 
+		else 
+		{
 			this.transform.position = this.transform.position + this.transform.forward * this.speed * Time.deltaTime;
+		}
+	}
+
+	public float remainingLife
+	{
+		get{ 
+			return (1 - startTime / life);
 		}
 	}
 }
