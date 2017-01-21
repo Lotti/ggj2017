@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,12 +9,27 @@ public class VoiceLightShader2 : Singleton<VoiceLightShader2> {
 
 	public Transform playerT;
 
+	public List<Material> materials;
+
 	public List<Renderer> renderers;
+
+	public Action<Transform> OnAllucco;
+
 	void Start()
 	{
 		this.renderers = new List<Renderer> ();
 		this.renderers.AddRange( this.GetComponents<Renderer> ());
 		this.renderers.AddRange (this.GetComponentsInChildren<Renderer> ());
+
+		this.materials = new List<Material> ();
+
+		foreach (var r in this.renderers) 
+		{
+			if (!materials.Contains (r.sharedMaterial)) 
+			{
+				materials.Add (r.sharedMaterial);
+			}
+		}
 
 	}
 
@@ -21,18 +37,27 @@ public class VoiceLightShader2 : Singleton<VoiceLightShader2> {
 	{
 		if (Input.GetKeyUp (KeyCode.Space) || (Input.GetMouseButtonUp(0)) ) 
 		{
-			if (this.go.Count < 4)
-			{
-				var newGo = new GameObject ();
-				var msw=newGo.AddComponent<MovingSoundWave> ();
-				newGo.transform.parent = this.transform;
-				newGo.transform.position = this.playerT.transform.position;
-				newGo.transform.forward = this.playerT.forward;
-				msw.StartPosition=this.playerT.transform.position;
-				this.go.Add (msw);
-			}
+			this.SpawnVoid (this.playerT.forward);
 		}
 		CheckObjPositions ();
+	}
+
+	public void SpawnVoid( Vector3 direction ){
+	
+		if (this.go.Count < 6)
+		{
+			var newGo = new GameObject ();
+			var msw=newGo.AddComponent<MovingSoundWave> ();
+			newGo.transform.parent = this.transform;
+			newGo.transform.position = this.playerT.transform.position;
+			newGo.transform.forward = direction;
+			msw.StartPosition=this.playerT.transform.position;
+			this.go.Add (msw);
+
+			if (OnAllucco != null) {
+				OnAllucco (this.playerT);
+			}
+		}
 	}
 
 	public bool isThisPositionOk(Vector3 raycastTarget)
@@ -67,7 +92,10 @@ public class VoiceLightShader2 : Singleton<VoiceLightShader2> {
 			toDel.Clear ();
 		}
 
-		this.renderers[0].sharedMaterial.SetInt("_Points_Length" , go.Count);
+		foreach (var m in this.materials) {
+			m.SetInt("_Points_Length" , go.Count);
+		}
+		//this.renderers[0].sharedMaterial.SetInt("_Points_Length" , go.Count);
 		if (go.Count > 0) {
 			
 			var vPos = new Vector4[20];
@@ -80,13 +108,17 @@ public class VoiceLightShader2 : Singleton<VoiceLightShader2> {
 
 				vPos[i] = waveGO.transform.position;
 				vStartPos [i] = waveGO.StartPosition;
-				properties[i] = new Vector2(2f, waveGO.remainingLife );
+				properties[i] = new Vector2(3f, waveGO.remainingLife );
 
 			}
 
-			this.renderers[0].sharedMaterial.SetVectorArray("_Points", vPos);
-			this.renderers[0].sharedMaterial.SetVectorArray("_StartPoints", vStartPos);
-			this.renderers[0].sharedMaterial.SetVectorArray("_Properties", properties);
+			foreach (var m in this.materials) 
+			{
+				m.SetVectorArray("_Points", vPos);
+				m.SetVectorArray("_StartPoints", vStartPos);
+				m.SetVectorArray("_Properties", properties);
+			}
+
 		}
 
 
