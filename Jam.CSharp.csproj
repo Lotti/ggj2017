@@ -258,6 +258,8 @@
     <Compile Include="Assets\Scripts\TestShader\MovingSoundWave.cs" />
     <Compile Include="Assets\Scripts\TestShader\VoiceLightShader.cs" />
     <Compile Include="Assets\Scripts\TestShader\VoiceLightShader2.cs" />
+    <Compile Include="Assets\Scripts\Utils\Singleton.cs" />
+    <Compile Include="Assets\Scripts\Utils\SingletonPrefab.cs" />
     <Compile Include="Assets\Scripts\mqtt.cs" />
     <Compile Include="Assets\Scripts\stronzateValerio\Floor.cs" />
     <Compile Include="Assets\Scripts\stronzateValerio\LightPulse.cs" />
