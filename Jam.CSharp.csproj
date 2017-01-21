@@ -367,7 +367,9 @@
     <Compile Include="Assets\Libraries\TouchScript\Scripts\Utils\TimedSequence.cs" />
     <Compile Include="Assets\Libraries\TouchScript\Scripts\Utils\TouchUtils.cs" />
     <Compile Include="Assets\Libraries\TouchScript\Scripts\Utils\TransformUtils.cs" />
+    <Compile Include="Assets\Resources\SingletonPrefabs\Dialog.cs" />
     <Compile Include="Assets\Scripts\GNEGNEGNE\WallAntaniScript.cs" />
+    <Compile Include="Assets\Scripts\MINIJson.cs" />
     <Compile Include="Assets\Scripts\Menu\MenuManager.cs" />
     <Compile Include="Assets\Scripts\Menu\MicrophoneClass.cs" />
     <Compile Include="Assets\Scripts\Menu\VrMenuManager.cs" />
