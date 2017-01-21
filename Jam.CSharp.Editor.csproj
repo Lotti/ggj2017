@@ -55,9 +55,6 @@
     <Reference Include="UnityEditor">
       <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.Advertisements">
-      <HintPath>Library\UnityAssemblies\UnityEngine.Advertisements.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEditor.Advertisements">
       <HintPath>Library\UnityAssemblies\UnityEditor.Advertisements.dll</HintPath>
     </Reference>
@@ -100,9 +97,6 @@
     <Reference Include="UnityEngine.HoloLens">
       <HintPath>Library\UnityAssemblies\UnityEngine.HoloLens.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.Purchasing">
-      <HintPath>Library\UnityAssemblies\UnityEngine.Purchasing.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEditor.VR">
       <HintPath>Library\UnityAssemblies\UnityEditor.VR.dll</HintPath>
     </Reference>
@@ -120,6 +114,12 @@
     </Reference>
     <Reference Include="SyntaxTree.VisualStudio.Unity.Bridge">
       <HintPath>Library\UnityAssemblies\SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
+    </Reference>
+    <Reference Include="OSCsharp">
+      <HintPath>Assets\Libraries\TouchScript\Modules\TUIO\Libraries\OSCsharp.dll</HintPath>
+    </Reference>
+    <Reference Include="TUIOsharp">
+      <HintPath>Assets\Libraries\TouchScript\Modules\TUIO\Libraries\TUIOsharp.dll</HintPath>
     </Reference>
     <Reference Include="Google.ProtocolBuffers">
       <HintPath>Assets\Plugins\Google.ProtocolBuffers.dll</HintPath>
@@ -140,13 +140,48 @@
     <Compile Include="Assets\GoogleVR\Legacy\Editor\GvrMenu.cs" />
     <Compile Include="Assets\GoogleVR\Legacy\Editor\GvrViewerEditor.cs" />
     <Compile Include="Assets\GoogleVR\Legacy\Editor\StereoControllerEditor.cs" />
+    <Compile Include="Assets\Libraries\TouchScript\Editor\Behaviors\Visualizer\TouchVisualizerEditor.cs" />
+    <Compile Include="Assets\Libraries\TouchScript\Editor\Gestures\Base\PinnedTransformGestureBaseEditor.cs" />
+    <Compile Include="Assets\Libraries\TouchScript\Editor\Gestures\Base\TransformGestureBaseEditor.cs" />
+    <Compile Include="Assets\Libraries\TouchScript\Editor\Gestures\FlickGestureEditor.cs" />
+    <Compile Include="Assets\Libraries\TouchScript\Editor\Gestures\GestureEditor.cs" />
+    <Compile Include="Assets\Libraries\TouchScript\Editor\Gestures\LongPressGestureEditor.cs" />
+    <Compile Include="Assets\Libraries\TouchScript\Editor\Gestures\PinnedTransformGestureEditor.cs" />
+    <Compile Include="Assets\Libraries\TouchScript\Editor\Gestures\PressGestureEditor.cs" />
+    <Compile Include="Assets\Libraries\TouchScript\Editor\Gestures\ReleaseGestureEditor.cs" />
+    <Compile Include="Assets\Libraries\TouchScript\Editor\Gestures\ScreenTransformGestureEditor.cs" />
+    <Compile Include="Assets\Libraries\TouchScript\Editor\Gestures\TapGestureEditor.cs" />
+    <Compile Include="Assets\Libraries\TouchScript\Editor\Gestures\TransformGestureEditor.cs" />
+    <Compile Include="Assets\Libraries\TouchScript\Editor\InputSources\InputSourceEditor.cs" />
+    <Compile Include="Assets\Libraries\TouchScript\Editor\InputSources\MobileInputEditor.cs" />
+    <Compile Include="Assets\Libraries\TouchScript\Editor\InputSources\MouseInputEditor.cs" />
+    <Compile Include="Assets\Libraries\TouchScript\Editor\InputSources\StandardInputEditor.cs" />
+    <Compile Include="Assets\Libraries\TouchScript\Editor\Layers\CameraLayer2DEditor.cs" />
+    <Compile Include="Assets\Libraries\TouchScript\Editor\Layers\FullscreenLayerEditor.cs" />
+    <Compile Include="Assets\Libraries\TouchScript\Editor\Layers\UILayerEditor.cs" />
+    <Compile Include="Assets\Libraries\TouchScript\Editor\TouchManagerEditor.cs" />
+    <Compile Include="Assets\Libraries\TouchScript\Editor\Utils\GUIElements.cs" />
+    <Compile Include="Assets\Libraries\TouchScript\Editor\Utils\PropertyDrawers\NullToggleDrawer.cs" />
+    <Compile Include="Assets\Libraries\TouchScript\Editor\Utils\PropertyDrawers\TagsDrawer.cs" />
+    <Compile Include="Assets\Libraries\TouchScript\Editor\Utils\PropertyDrawers\ToggleLeftDrawer.cs" />
+    <Compile Include="Assets\Libraries\TouchScript\Modules\TUIO\Editor\InputSources\TuioInputEditor.cs" />
+    <Compile Include="Assets\UITween\Editor\EditorUITween.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\GoogleVR\Distortion\GvrDistortion.cginc" />
     <None Include="Assets\GoogleVR\Legacy\Resources\SolidColor.shader" />
     <None Include="Assets\GoogleVR\Legacy\Resources\UnlitTexture.shader" />
     <None Include="Assets\GoogleVR\Resources\UI\GvrReticleShader.shader" />
+    <None Include="Assets\Libraries\TouchScript\Examples\_misc\Shaders\BorderDiffuse.shader" />
+    <None Include="Assets\Libraries\TouchScript\Examples\_misc\Shaders\UnlitColor.shader" />
+    <None Include="Assets\Libraries\TouchScript\Shaders\DebugDepthTest.shader" />
+    <None Include="Assets\Libraries\TouchScript\Shaders\DebugMultiplyDepthTest.shader" />
+    <None Include="Assets\Libraries\TouchScript\Shaders\DebugMultiplyNoDepthTest.shader" />
+    <None Include="Assets\Libraries\TouchScript\Shaders\DebugNoDepthTest.shader" />
+    <None Include="Assets\Libraries\TouchScript\license.txt" />
     <None Include="Assets\Plugins\Android\AndroidManifest.xml" />
+    <None Include="Assets\Shaders\CustomShader.shader" />
+    <None Include="Assets\Shaders\CustomShader2.shader" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>
