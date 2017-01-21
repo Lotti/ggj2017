@@ -16,9 +16,9 @@ public class TopCameraController : MonoBehaviour {
 		body = TopCamera.GetComponent<Rigidbody> ();
 	}
 
-	private float defaultZ;
+	private float defaultY;
 	void Start () {
-		defaultZ = TopCamera.transform.localPosition.z;
+		defaultY = TopCamera.transform.localPosition.y;
 	}
 
 	private void OnEnable() {
@@ -53,18 +53,9 @@ public class TopCameraController : MonoBehaviour {
 		Vector3 v = TopCamera.transform.localPosition;
 		Vector3 d = OneFingerMoveGesture.DeltaPosition * PanSpeed;
 
-		moveTo = new Vector3 (v.x + d.x, v.y + d.y, defaultZ);
+		moveTo = new Vector3 (v.x + d.x, defaultY, v.z+d.y);
 		Debug.Log ("move: v" + v +", d"+ d+ ", r"+moveTo);
-		Debug.Log ("forward: " + transform.forward);
 		needToMove = true;
-		//body.MovePosition (moveTo);
-		//transform.localPosition = moveTo;
-	}
-
-	void FixedUpdate() {
-		if (needToMove) {
-			needToMove = false;
-			body.MovePosition (moveTo);
-		}
+		body.MovePosition (moveTo);
 	}
 }
