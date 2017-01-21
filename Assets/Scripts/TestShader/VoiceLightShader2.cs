@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class VoiceLightShader2 : MonoBehaviour {
+public class VoiceLightShader2 : Singleton<VoiceLightShader2> {
 
 	public List<MovingSoundWave> go;
 
