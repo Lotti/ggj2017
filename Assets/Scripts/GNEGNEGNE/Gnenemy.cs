@@ -8,7 +8,7 @@ public class Gnenemy : MonoBehaviour
 
 	public List<GameObject> Children;
 
-	public float speed;
+	public float speed=5;
 	// Use this for initialization
 	void Start () 
 	{

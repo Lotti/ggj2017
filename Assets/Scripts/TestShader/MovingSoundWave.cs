@@ -10,10 +10,11 @@ public class MovingSoundWave : MonoBehaviour {
 	private float startTime=0;
 
 	public float speed=9;
+
+	public float radius=3f;
 	// Use this for initialization
 	void Start () 
 	{
-		
 		startTime = Time.deltaTime;
 	}
 	
@@ -33,7 +34,22 @@ public class MovingSoundWave : MonoBehaviour {
 
 	public bool IsThisPointOk(Vector3 point)
 	{
-		return (point - this.transform.position).sqrMagnitude < (remainingLife * remainingLife);
+		if (this.transform == null)
+			return false;
+		
+		var dir = this.transform.forward;
+		var max = (this.transform.position - this.StartPosition).sqrMagnitude;
+		var min = max - this.radius * this.radius;
+		var p = (point - this.StartPosition).sqrMagnitude;
+		Debug.LogError( max+" "+min +" "+p);
+		Debug.DrawLine (this.StartPosition, this.transform.position, Color.red);
+		Debug.DrawLine (this.StartPosition, point, Color.green);
+		Debug.DrawLine (this.StartPosition, point - dir*this.radius, Color.yellow);
+		if ( p>min && p < max) 
+		{
+			return true;
+		}
+		return false;
 	}
 
 	public float remainingLife
