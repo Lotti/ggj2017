@@ -71,20 +71,4 @@ public class MenuManager : MonoBehaviour
 
     }
 
-	private void Play(PlayerType plrType){
-		menu.SetActive (false);
-
-		switch (plrType) {
-			case PlayerType.PHONE:
-				// apri scena per il telefono
-				Debug.Log("PHONE");
-				break;
-			case PlayerType.VR:
-				// apri scena per il VR
-				Debug.Log("VR");
-				break;
-		}
-
-		Debug.Log("menu disabilitato, scena avviata");
-	}
 }
