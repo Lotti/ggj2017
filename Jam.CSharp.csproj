@@ -252,6 +252,7 @@
     <Compile Include="Assets\Libraries\TouchScript\Scripts\Utils\TimedSequence.cs" />
     <Compile Include="Assets\Libraries\TouchScript\Scripts\Utils\TouchUtils.cs" />
     <Compile Include="Assets\Libraries\TouchScript\Scripts\Utils\TransformUtils.cs" />
+    <Compile Include="Assets\Scripts\LevelScript\TeleportWave.cs" />
     <Compile Include="Assets\Scripts\Menu\MenuManager.cs" />
     <Compile Include="Assets\Scripts\PlayerController\Targettable.cs" />
     <Compile Include="Assets\Scripts\TestShader\MovingSoundWave.cs" />
