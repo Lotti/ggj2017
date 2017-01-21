@@ -35,14 +35,16 @@ public class VoiceLightShader : MonoBehaviour {
 		{
 			if (this.go.Count < 4) 
 			{
-				var newGo = new GameObject ();
+				var newGo = new GameObject ( );
+				newGo.SetActive (false);
 				newGo.transform.parent = this.transform;
 				newGo.transform.position = this.playerT.transform.position;
 				newGo.transform.forward = this.playerT.forward;
 				newGo.AddComponent<MovingSoundWave> ();
 
 				this.go.Add (newGo);
-
+				newGo.SetActive (true);
+				Debug.LogError ("asd");
 			}
 
 		}
