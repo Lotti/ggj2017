@@ -1,8 +1,8 @@
-﻿// Upgrade NOTE: replaced '_Object2World' with 'unity_ObjectToWorld'
-
-Shader "Example/Heatmap" {
+﻿
+Shader "Custom/roomShader" {
 	Properties {
-		_HeatTex ("Texture", 2D) = "white" {}
+		_MainColor ("Main Color (RGBA)", Color) = (0.7, 1, 1, 0)
+		_WaveColor ("Wave Color (RGBA)", Color) = (0.7, 1, 1, 0)
 	}
 	SubShader {
 		Tags {"Queue"="Transparent"}
@@ -29,32 +29,40 @@ Shader "Example/Heatmap" {
 				return o;
 			}
 
-			uniform int _Points_Length = 0;
-			uniform float3 _Points [20];		// (x, y, z) = position
+			uniform int _Points_Length = 20;
+			uniform float3 _Points [20];
+			uniform float3 _StartPoints [20];		// (x, y, z) = position
 			uniform float2 _Properties [20];	// x = radius, y = intensity
-			
-			sampler2D _HeatTex;
 
-			half4 frag(vertOutput output) : COLOR {
+			float4 _MainColor;
+			float4 _WaveColor;
+
+			half4 frag(vertOutput output) : COLOR 
+			{
 				// Loops over all the points
 				half h = 0;
-				for (int i = 0; i < _Points_Length; i ++)
+				for (int i = 0; i < _Points_Length; i++)
 				{
 					// Calculates the contribution of each point
-					half di = distance(output.worldPos, _Points[i].xyz);
+					//half di = distance(output.worldPos, _Points[i].xyz);
 
-					half ri = _Properties[i].x;
-					half hi = 1 - saturate(di / ri);
+					half distMesh = distance(output.worldPos, _Points[i].xyz);
+					half distP = distance(_StartPoints[i].xyz, _Points[i].xyz);
 
-					h += hi * _Properties[i].y;
+					if( distMesh<distP )
+					{
+						half ri = _Properties[i].x;
+						half hi = 1 - saturate(distMesh / distP);
+						h += hi * _Properties[i].y;
+					}
 				}
 
-				// Converts (0-1) according to the heat texture
-				h = saturate(h);
-				half4 color = tex2D(_HeatTex, fixed2(h, 0.5));
-				return color;
+				h=saturate(h);
+
+				return _MainColor + _WaveColor * h;
+
 			}
-			ENDCG
+			ENDCG	
 		}
 	} 
 	Fallback "Diffuse"
