@@ -6,6 +6,7 @@ public class TeleportWave : MonoBehaviour
 {
     Ray ray;
     RaycastHit hit;
+    public LayerMask floorMask;
 
     // Update is called once per frame
     void Update ()
@@ -14,10 +15,11 @@ public class TeleportWave : MonoBehaviour
         {
             ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-            if (Physics.Raycast(ray.origin, ray.direction, out hit, 1000f))
+            if (Physics.Raycast(ray.origin, ray.direction, out hit, 1000f, floorMask))
             {
-               
-                GameObject.Find("PlayerVR").transform.position = new Vector3(hit.point.x, 0.5f, hit.point.z);
+                Debug.Log(hit.point);
+                if (VoiceLightShader2.Instance.isThisPositionOk(hit.point))
+                    this.transform.position = hit.point;
             }
         }
         
