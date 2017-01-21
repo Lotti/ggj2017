@@ -47,13 +47,13 @@ public class mqtt : MonoBehaviour {
 
 	public string room = "asd";
 	void OnGUI() {
-		if (GUI.Button (new Rect (20,40,500,500), "WARMUP")) {
+		if (GUI.Button (new Rect (20,40,500,250), "WARMUP")) {
 			Debug.Log("sending...");
 			sendMessage ("warmup", "ready");
 			Debug.Log("sent");
 		}
 
-		if (GUI.Button (new Rect (20,40,500,500), "READY")) {
+		if (GUI.Button (new Rect (20,290,500,250), "READY")) {
 			Debug.Log("sending...");
 			sendMessage (room, "asd");
 			Debug.Log("sent");
