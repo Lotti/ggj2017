@@ -16,7 +16,7 @@ public class TeleportWave : MonoBehaviour
 
             if (Physics.Raycast(ray.origin, ray.direction, out hit, 1000f))
             {
-               
+                Debug.Log(hit.point);
                 GameObject.Find("PlayerVR").transform.position = new Vector3(hit.point.x, 0.5f, hit.point.z);
             }
         }
