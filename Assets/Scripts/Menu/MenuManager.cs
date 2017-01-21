@@ -4,63 +4,26 @@ using UnityEngine;
 
 public class MenuManager : MonoBehaviour
 {
-	private string startPhoneText = "Play as phone player";
-	private string startVRText = "Play as VR player";
-	enum PlayerType { PHONE, VR };
+	public GameObject menu, phoneButton, vrButton;
+	public enum PlayerType { PHONE, VR };
 
-	public enum InitMode { MAIN_MENU, GAME_MENU };
-	public InitMode setup; 
-    public GameObject menu, phoneButton, vrButton, leaveButton;
-	public int TextSize = 32;
-
-    void Awake()
+	void Awake()
     {
-		ManagerText();
+		phoneButton.GetComponent<Button>().onClick.AddListener(delegate { Play(PlayerType.PHONE); });
+		vrButton.GetComponent<Button>().onClick.AddListener(delegate { Play(PlayerType.VR); });
     }
 
-    private void ManagerText()
+	private void Play(PlayerType plrType)
     {
-		// rendi visibile solo 
-		switch (setup) {
-			case InitMode.MAIN_MENU:
-				leaveButton.SetActive (false);
-				break;
-			case InitMode.GAME_MENU:
-				phoneButton.SetActive (false);
-				vrButton.SetActive (false);
-				leaveButton.SetActive (true);
-				break;
-		};
-
-		// hookup eventi
-		phoneButton.GetComponent<Button>().onClick.AddListener(delegate{ 
-			Play(PlayerType.PHONE); 
-		});
-
-		vrButton.GetComponent<Button> ().onClick.AddListener (delegate {
-			Play (PlayerType.VR);
-		});
-
-		leaveButton.GetComponent<Button> ().onClick.AddListener (delegate {
-			menu.SetActive(false);
-			Debug.Log("ritorno al menu principale");
-		});
-    }
-
-	private void Play(PlayerType plrType){
-		menu.SetActive (false);
-
+        menu.SetActive(false);
 		switch (plrType) {
 			case PlayerType.PHONE:
-				// apri scena per il telefono
-				Debug.Log("PHONE");
+				// carica scena telefono
 				break;
 			case PlayerType.VR:
-				// apri scena per il VR
-				Debug.Log("VR");
+				// carica scena vr
 				break;
 		}
-
-		Debug.Log("menu disabilitato, scena avviata");
-	}
+		Debug.Log ("scena " + plrType + " caricata");
+    }
 }
