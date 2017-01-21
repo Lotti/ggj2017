@@ -6,7 +6,7 @@ public class MenuManager : MonoBehaviour
 {
     public bool gameInPause = false;
 
-    public GameObject play;
+    public Text txt;
 
     public GameObject menu;
 
@@ -17,6 +17,11 @@ public class MenuManager : MonoBehaviour
     void Awake()
     {
         ManagerSizeText();
+    }
+
+    void Update()
+    {
+        ManagerText();
     }
     
     private void Play()
@@ -34,13 +39,13 @@ public class MenuManager : MonoBehaviour
     private void ManagerText()
     {
         if (!gameInPause)
-            play.GetComponent<Text>().text = playText;
+            txt.GetComponent<Text>().text = playText;
         else if(gameInPause)
-            play.GetComponent<Text>().text = quitText;       
+            txt.GetComponent<Text>().text = quitText;       
     }
 
     private void ManagerSizeText()
     {
-        play.GetComponent<Text>().fontSize = 32;
+        txt.GetComponent<Text>().fontSize = 32;
     }
 }
