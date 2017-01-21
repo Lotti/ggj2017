@@ -17,13 +17,11 @@ public class MenuManager : MonoBehaviour
 
     
 
-    public void Player1Start()
-    {
+    public void Player1Start() {
 
     }
 
-    public void Player2Start()
-    {
+    public void Player2Start() {
 
 
     }
