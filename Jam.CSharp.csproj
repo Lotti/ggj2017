@@ -52,9 +52,6 @@
     <Reference Include="UnityEngine">
       <HintPath>Library\UnityAssemblies\UnityEngine.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.Advertisements">
-      <HintPath>Library\UnityAssemblies\UnityEngine.Advertisements.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>Library\UnityAssemblies\UnityEngine.UI.dll</HintPath>
     </Reference>
@@ -70,14 +67,14 @@
     <Reference Include="UnityEngine.HoloLens">
       <HintPath>Library\UnityAssemblies\UnityEngine.HoloLens.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.Purchasing">
-      <HintPath>Library\UnityAssemblies\UnityEngine.Purchasing.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEngine.VR">
       <HintPath>Library\UnityAssemblies\UnityEngine.VR.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor">
       <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
+    </Reference>
+    <Reference Include="M2Mqtt">
+      <HintPath>Assets\Libraries\M2Mqtt\M2Mqtt.dll</HintPath>
     </Reference>
     <Reference Include="OSCsharp">
       <HintPath>Assets\Libraries\TouchScript\Modules\TUIO\Libraries\OSCsharp.dll</HintPath>
@@ -132,40 +129,6 @@
     <Compile Include="Assets\GoogleVR\Scripts\UI\GvrReticle.cs" />
     <Compile Include="Assets\GoogleVR\Scripts\UI\IGvrGazePointer.cs" />
     <Compile Include="Assets\GoogleVR\Scripts\UI\IGvrGazeResponder.cs" />
-    <Compile Include="Assets\Libraries\MQTT\Exceptions\MqttClientException.cs" />
-    <Compile Include="Assets\Libraries\MQTT\Exceptions\MqttCommunicationException.cs" />
-    <Compile Include="Assets\Libraries\MQTT\Exceptions\MqttConnectionException.cs" />
-    <Compile Include="Assets\Libraries\MQTT\Exceptions\MqttTimeoutException.cs" />
-    <Compile Include="Assets\Libraries\MQTT\IMqttNetworkChannel.cs" />
-    <Compile Include="Assets\Libraries\MQTT\Messages\MqttMsgBase.cs" />
-    <Compile Include="Assets\Libraries\MQTT\Messages\MqttMsgConnack.cs" />
-    <Compile Include="Assets\Libraries\MQTT\Messages\MqttMsgConnect.cs" />
-    <Compile Include="Assets\Libraries\MQTT\Messages\MqttMsgConnectEventArgs.cs" />
-    <Compile Include="Assets\Libraries\MQTT\Messages\MqttMsgContext.cs" />
-    <Compile Include="Assets\Libraries\MQTT\Messages\MqttMsgDisconnect.cs" />
-    <Compile Include="Assets\Libraries\MQTT\Messages\MqttMsgPingReq.cs" />
-    <Compile Include="Assets\Libraries\MQTT\Messages\MqttMsgPingResp.cs" />
-    <Compile Include="Assets\Libraries\MQTT\Messages\MqttMsgPuback.cs" />
-    <Compile Include="Assets\Libraries\MQTT\Messages\MqttMsgPubcomp.cs" />
-    <Compile Include="Assets\Libraries\MQTT\Messages\MqttMsgPublish.cs" />
-    <Compile Include="Assets\Libraries\MQTT\Messages\MqttMsgPublishEventArgs.cs" />
-    <Compile Include="Assets\Libraries\MQTT\Messages\MqttMsgPublishedEventArgs.cs" />
-    <Compile Include="Assets\Libraries\MQTT\Messages\MqttMsgPubrec.cs" />
-    <Compile Include="Assets\Libraries\MQTT\Messages\MqttMsgPubrel.cs" />
-    <Compile Include="Assets\Libraries\MQTT\Messages\MqttMsgSuback.cs" />
-    <Compile Include="Assets\Libraries\MQTT\Messages\MqttMsgSubscribe.cs" />
-    <Compile Include="Assets\Libraries\MQTT\Messages\MqttMsgSubscribeEventArgs.cs" />
-    <Compile Include="Assets\Libraries\MQTT\Messages\MqttMsgSubscribedEventArgs.cs" />
-    <Compile Include="Assets\Libraries\MQTT\Messages\MqttMsgUnsuback.cs" />
-    <Compile Include="Assets\Libraries\MQTT\Messages\MqttMsgUnsubscribe.cs" />
-    <Compile Include="Assets\Libraries\MQTT\Messages\MqttMsgUnsubscribeEventArgs.cs" />
-    <Compile Include="Assets\Libraries\MQTT\Messages\MqttMsgUnsubscribedEventArgs.cs" />
-    <Compile Include="Assets\Libraries\MQTT\MqttClient.cs" />
-    <Compile Include="Assets\Libraries\MQTT\MqttNetworkChannel.cs" />
-    <Compile Include="Assets\Libraries\MQTT\MqttSettings.cs" />
-    <Compile Include="Assets\Libraries\MQTT\Utility\QueueExtension.cs" />
-    <Compile Include="Assets\Libraries\MQTT\Utility\Trace.cs" />
-    <Compile Include="Assets\Libraries\MQTT\test\mqttTest.cs" />
     <Compile Include="Assets\Libraries\TouchScript\Examples\Camera\Scripts\CameraController.cs" />
     <Compile Include="Assets\Libraries\TouchScript\Examples\Checkers\Scripts\Board.cs" />
     <Compile Include="Assets\Libraries\TouchScript\Examples\Checkers\Scripts\Exclusive.cs" />
@@ -258,11 +221,11 @@
     <Compile Include="Assets\Libraries\TouchScript\Scripts\Utils\TimedSequence.cs" />
     <Compile Include="Assets\Libraries\TouchScript\Scripts\Utils\TouchUtils.cs" />
     <Compile Include="Assets\Libraries\TouchScript\Scripts\Utils\TransformUtils.cs" />
-    <Compile Include="Assets\Scripts\LevelScript\TeleportWave.cs" />
     <Compile Include="Assets\Scripts\Menu\MenuManager.cs" />
     <Compile Include="Assets\Scripts\Menu\MicrophoneClass.cs" />
     <Compile Include="Assets\Scripts\Menu\VrMenuManager.cs" />
     <Compile Include="Assets\Scripts\PlayerController\Targettable.cs" />
+    <Compile Include="Assets\Scripts\PlayerController\TeleportWave.cs" />
     <Compile Include="Assets\Scripts\TestShader\MovingSoundWave.cs" />
     <Compile Include="Assets\Scripts\TestShader\VoiceLightShader2.cs" />
     <Compile Include="Assets\Scripts\Utils\Singleton.cs" />
