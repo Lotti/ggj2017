@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class MicrophoneClass : MonoBehaviour {
+public class IntelliScream : MonoBehaviour {
 
 	private AudioSource audioS;
 	private bool _isScreaming = false;
