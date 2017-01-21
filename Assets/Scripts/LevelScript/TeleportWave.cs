@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TeleportWave : Targettable
+public class TeleportWave : MonoBehaviour
 {
     Ray ray;
     RaycastHit hit;
