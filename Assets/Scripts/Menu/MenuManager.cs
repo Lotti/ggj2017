@@ -8,7 +8,9 @@ public class MenuManager : MonoBehaviour
 
     public Text txt;
 
-    public GameObject menu;
+
+
+    public GameObject menu,button;
 
     private string playText = "Play";
 
@@ -22,6 +24,10 @@ public class MenuManager : MonoBehaviour
     void Update()
     {
         ManagerText();
+        if (gameInPause)
+            button.GetComponent<Button>().onClick.AddListener(delegate { Play(); });
+        else if (gameInPause)
+            button.GetComponent<Button>().onClick.AddListener(delegate { Quit(); });
     }
     
     private void Play()
@@ -48,4 +54,5 @@ public class MenuManager : MonoBehaviour
     {
         txt.GetComponent<Text>().fontSize = 32;
     }
+
 }
