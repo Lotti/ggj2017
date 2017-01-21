@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class VoiceLightShader2 : MonoBehaviour {
 
-	public List<GameObject> go;
+	public List<MovingSoundWave> go;
 
 	public Transform playerT;
 
@@ -21,21 +21,30 @@ public class VoiceLightShader2 : MonoBehaviour {
 	{
 		if (Input.GetKeyUp (KeyCode.Space) || (Input.GetMouseButtonUp(0)) ) 
 		{
-			if (this.go.Count < 4) 
+			if (this.go.Count < 4)
 			{
-				var newGo = new GameObject ( );
+				var newGo = new GameObject ();
 				var msw=newGo.AddComponent<MovingSoundWave> ();
 				newGo.transform.parent = this.transform;
 				newGo.transform.position = this.playerT.transform.position;
 				newGo.transform.forward = this.playerT.forward;
 				msw.StartPosition=this.playerT.transform.position;
-				this.go.Add (newGo);
+				this.go.Add (msw);
 			}
-
 		}
-
 		CheckObjPositions ();
 	}
+
+	public bool isThisPositionOk(Vector3 raycastTarget)
+	{
+		foreach( var g in this.go )
+		{
+			if (g.IsThisPointOk (raycastTarget))
+				return true;
+		}
+		return false;
+	}
+
 	public List<int> toDel=new List<int>();
 
 	public void  CheckObjPositions( ) 
@@ -70,11 +79,10 @@ public class VoiceLightShader2 : MonoBehaviour {
 				var waveGO = go[i];
 
 				vPos[i] = waveGO.transform.position;
-				vStartPos [i] = waveGO.GetComponent<MovingSoundWave> ().StartPosition;
-				properties[i] = new Vector2(2f, waveGO.GetComponent<MovingSoundWave>().remainingLife );
+				vStartPos [i] = waveGO.StartPosition;
+				properties[i] = new Vector2(2f, waveGO.remainingLife );
 
 			}
-			//Debug.Log (vPos.Count);
 
 			this.renderers[0].sharedMaterial.SetVectorArray("_Points", vPos);
 			this.renderers[0].sharedMaterial.SetVectorArray("_StartPoints", vStartPos);
