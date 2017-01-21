@@ -35,14 +35,16 @@ public class VoiceLightShader : MonoBehaviour {
 		{
 			if (this.go.Count < 4) 
 			{
-				var newGo = new GameObject ();
-				newGo.transform.parent = this.transform;
-				newGo.transform.position = this.playerT.transform.position;
-				newGo.transform.forward = this.playerT.forward;
-				newGo.AddComponent<MovingSoundWave> ();
+                for (var i = 0; i < 8; i++)
+                {
+                    var newGo = new GameObject();
+                    newGo.transform.parent = this.transform;
+                    newGo.transform.position = this.playerT.transform.position;
+                    newGo.transform.forward = this.playerT.forward;
+                    newGo.AddComponent<MovingSoundWave>();
 
-				this.go.Add (newGo);
-
+                    this.go.Add(newGo);
+                }
 			}
 
 		}
@@ -57,7 +59,8 @@ public class VoiceLightShader : MonoBehaviour {
 		{
 			var waveGO = go [i];
 			if (waveGO != null) {
-				//this.GetComponent<Renderer>().sharedMaterial.SetVector("_ShieldColor", new Vector4(01f, 1, 1, 0f));
+				
+                //this.GetComponent<Renderer>().sharedMaterial.SetVector("_ShieldColor", new Vector4(01f, 1, 1, 0f));
 
 				this.renderers [0].sharedMaterial.SetVector ("_Position", transform.InverseTransformPoint (waveGO.transform.position));
 
