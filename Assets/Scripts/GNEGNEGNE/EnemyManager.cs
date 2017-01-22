@@ -20,6 +20,7 @@ public class EnemyManager : Singleton<EnemyManager> {
 		{
 			lastTimeUpdate = 0;
 			var gngng= GameObject.Instantiate (this.stampino);
+			gngng.transform.parent = this.transform;
 			gngng.transform.position = Player.Instance.transform.position + 
 				Player.Instance.transform.right*Random.Range(-5f,5f) + 
 				Player.Instance.transform.forward * 5;
