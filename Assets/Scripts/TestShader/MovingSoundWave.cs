@@ -41,10 +41,7 @@ public class MovingSoundWave : MonoBehaviour {
 		var max = (this.transform.position - this.StartPosition).sqrMagnitude;
 		var min = max - this.radius * this.radius;
 		var p = (point - this.StartPosition).sqrMagnitude;
-		Debug.LogError( max+" "+min +" "+p);
-		Debug.DrawLine (this.StartPosition, this.transform.position, Color.red);
-		Debug.DrawLine (this.StartPosition, point, Color.green);
-		Debug.DrawLine (this.StartPosition, point - dir*this.radius, Color.yellow);
+
 		if ( p>min && p < max) 
 		{
 			return true;
