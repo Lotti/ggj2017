@@ -9,6 +9,36 @@ public class EnemyManager : Singleton<EnemyManager> {
 	private float lastTimeUpdate=0;
 	public List<Transform> enemies = new List<Transform> ();
 	// Update is called once per frame
+
+	void OnEnable() {
+		Networking.Instance.incomingData += applyIncomingData;
+	}
+
+	void OnDisable() {
+		Networking.Instance.incomingData -= applyIncomingData; 
+	}
+
+	void applyIncomingData(RoomPackage rp) {
+		while (enemies.Count < rp.enemiesPosition.Count) 
+		{
+			Spawn ();
+		}
+
+		while (enemies.Count > rp.enemiesPosition.Count) 
+		{
+			var todestroy = enemies[enemies.Count - 1];
+			enemies.RemoveAt(enemies.Count - 1);
+			Destroy(todestroy.gameObject);
+		}
+
+		for (int i = 0; i < rp.enemiesPosition.Count; i++) {
+			enemies[i].transform.position = rp.enemiesPosition [i];
+		}
+		for (int i = 0; i < rp.enemiesEuler.Count; i++) {
+			enemies[i].transform.eulerAngles = rp.enemiesEuler[i];
+		}
+	}
+
 	void Update () 
 	{
 		if (Networking.Instance.PlayerType == 1) 
@@ -20,28 +50,6 @@ public class EnemyManager : Singleton<EnemyManager> {
 			}
 			lastTimeUpdate += Time.deltaTime;
 		} 
-		else if(Networking.IsInstanced())
-		{
-			while (enemies.Count < Networking.Instance.enemiesTransform.Count) 
-			{
-				Spawn ();
-			}
-
-			while (enemies.Count > Networking.Instance.enemiesTransform.Count) 
-			{
-				var todestroy = enemies [enemies.Count - 1];
-				enemies.RemoveAt (enemies.Count - 1);
-				Destroy (todestroy.gameObject);
-			}
-
-			for (int i = 0; i < Networking.Instance.enemiesTransform.Count; i++) 
-			{
-				enemies [i].transform.position = Networking.Instance.enemiesTransform [i].position;
-				enemies [i].transform.rotation = Networking.Instance.enemiesTransform [i].rotation;
-			}	
-
-		}
-
 	}
 
 	void Spawn()
