@@ -35,12 +35,20 @@ public class VoiceLightShader2 : Singleton<VoiceLightShader2> {
 
 	public void Update()
 	{
-		if (Input.GetKeyUp (KeyCode.Space) || (Input.GetMouseButtonUp(0)) ) 
+#if UNITY_EDITOR
+        if (Input.GetKeyUp (KeyCode.Space) || (Input.GetMouseButtonUp(0)) ) 
 		{
 			this.SpawnVoid (this.playerT.forward);
 		}
-		CheckObjPositions ();
+#endif
+        CheckObjPositions ();
 	}
+
+    public void SpawnVoice()
+    {
+        this.SpawnVoid(this.playerT.forward);
+        Debug.Log("Spawn voice");
+    }
 
 	public void SpawnVoid( Vector3 direction ){
 	
