@@ -7,118 +7,106 @@ using uPLibrary.Networking.M2Mqtt;
 using uPLibrary.Networking.M2Mqtt.Messages;
 using uPLibrary.Networking.M2Mqtt.Utility;
 using uPLibrary.Networking.M2Mqtt.Exceptions;
+using MiniJSon;
 
-public class mqtt : MonoBehaviour {
+public class Networking : Singleton<Networking> {
 
 	private MqttClient client;
 	private string clientId;
-	private string serverHost = "192.168.138.151";
+	private string serverHost = "iot.eclipse.org";
 	private int port = 1883;
+	private int playerType = 0;
+	private string topicPrefix = "gg17MEGA-";
+	private string topic = default(string);
+	private int msgCounter = 0;
+	public int PlayerType { get { return playerType; } }
+	public string Topic { get { return topic; } }
 
-	class MQTTPackage {
-		
-	}
-
-	class WarmupPackage: MQTTPackage {
-		public string clientId;
-		public int playerType;
-
-		public WarmupPackage (string clientId, int playerType) {
-			this.clientId = clientId;
-			this.playerType = playerType;
-		}
-
-		public string ToString() {
-			return JsonUtility.ToJson (this);
-		}
-	}
+	abstract class MQTTPackage {
+		abstract public string ToString();
+	};
 
 	class RoomPackage: MQTTPackage {
-		public string playerOne;
-		public string playerTwo;
-		public string topic;
+		public int counter = 0;
 
-		public RoomPackage (string playerOne, string playerTwo, string topic) {
-			this.playerOne = playerOne;
-			this.playerTwo = playerTwo;
-			this.topic = topic;
+		public RoomPackage(int counter) {
+			this.counter = counter;
 		}
 
-		public string ToString() {
-			return JsonUtility.ToJson (this);
+		public override string ToString() {
+			return JsonUtility.ToJson(this);
+		}
+
+		public static RoomPackage fromDictionary(Dictionary<string, object> d) {
+			if (d.ContainsKey ("counter")) {
+				return new RoomPackage(Convert.ToInt32(d["counter"]));	
+			} else {
+				return null;
+			}
 		}
 	}
 
 	void Awake () {
-		// create client instance 
+		// create client instance
 		client = new MqttClient(serverHost, port, false, null); 
 
 		clientId = Guid.NewGuid().ToString(); 
-		client.Connect(clientId); 	
+		client.Connect(clientId); 
 	}
 
 	void OnEnable() {
-		// register to message received 
-		client.MqttMsgPublishReceived += client_MqttMsgReceived; 
+		client.MqttMsgPublishReceived += client_MsgReceived; 
 	}
 
 	void OnDisable() {
-		// register to message received 
-		client.MqttMsgPublishReceived -= client_MqttMsgReceived; 
+		client.MqttMsgPublishReceived -= client_MsgReceived; 
 	}
+
+	void client_MsgReceived(object c, MqttMsgPublishEventArgs ev) { 
+		string msg = System.Text.Encoding.UTF8.GetString (ev.Message);
+		Debug.Log ("Received -> " + ev.Topic + ": "+ msg);
+
+		try {
+			Dictionary<string, object> d = (Dictionary<string, object>) MiniJSon.Json.Deserialize (msg);
+			RoomPackage rp = RoomPackage.fromDictionary(d);
+			// TODO aggiornare i dati di gioco
+		}
+		catch (Exception e) {
+			Debug.LogError(e);
+		}
+	} 
 
 	// Use this for initialization
 	void Start () {
-		
-		// subscribe to the topic "/home/temperature" with QoS 2 
-		client.Subscribe(new string[] { "warmup" }, new byte[] { MqttMsgBase.QOS_LEVEL_AT_LEAST_ONCE }); 
-	}
 
-	void client_MqttMsgReceived(object client, MqttMsgPublishEventArgs ev) { 
-		string msg = System.Text.Encoding.UTF8.GetString (ev.Message);
-		MQTTPackage p;
-		try {
-			p = JsonUtility.FromJson<RoomPackage> (msg);	
-		} catch (Exception e1) {
-			Debug.LogError (e1);
-			try {
-				p = JsonUtility.FromJson<WarmupPackage> (msg);	
-			}	
-			catch (Exception e2) {
-				Debug.LogError (e2);	
-				p = null;
-			}
+	}
+		
+	private float time = 0f;
+	private float timeHello = 0.2f;
+	void Update() {
+		if (time >= timeHello) {
+			time = 0f;
+			// TODO Invia i dati di gioco
+			sendMessage(this.topic, new RoomPackage(++msgCounter).ToString());
 		}
-		if (p != null) {
-			if (p is WarmupPackage) {
-				Debug.Log ("Received -> " + ev.Topic + ": "+ System.Text.Encoding.UTF8.GetString(ev.Message));
-			} else if (p is RoomPackage) {
-				Debug.Log ("Received -> " + ev.Topic + ": "+ System.Text.Encoding.UTF8.GetString(ev.Message));
-			}
-		}
-	} 
+	}
 
 	void sendMessage(string topic, string message) {
 		client.Publish(topic, System.Text.Encoding.UTF8.GetBytes(message), MqttMsgBase.QOS_LEVEL_AT_LEAST_ONCE, true);
 	}
 
-	public string room = "asd";
-	void OnGUI() {
-		if (GUI.Button (new Rect (20,40,250,250), "WARMUP P1")) {
-			Debug.Log("sending...");
-			sendMessage ("warmup", new WarmupPackage(clientId, 1).ToString());
-			Debug.Log("sent");
-		}
-		if (GUI.Button (new Rect (270,40,250,250), "WARMUP P2")) {
-			Debug.Log("sending...");
-			sendMessage ("warmup", new WarmupPackage(clientId, 2).ToString());
-			Debug.Log("sent");
-		}
+	public string playAsPlayer1() {
+		playerType = 1;
+		msgCounter = 0;
+		this.topic = topicPrefix+UnityEngine.Random.Range(1111,9999).ToString();
+		client.Subscribe(new string[] { this.topic }, new byte[] { MqttMsgBase.QOS_LEVEL_AT_LEAST_ONCE });
+		return topic;
+	}
 
-		if (GUI.Button (new Rect (20,290,500,250), "READY")) {
-			Debug.Log("sending...");
-			sendMessage (room, "asd");
-			Debug.Log("sent");
-		}
+	public void playAsPlayer2(string topic) {
+		playerType = 2;
+		msgCounter = 0;
+		this.topic = topic;
+		client.Subscribe(new string[] { this.topic }, new byte[] { MqttMsgBase.QOS_LEVEL_AT_LEAST_ONCE });
 	}
 }

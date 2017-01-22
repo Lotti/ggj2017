@@ -46,18 +46,18 @@ Shader "Custom/roomShader" {
 					// Calculates the contribution of each point
 					//half di = distance(output.worldPos, _Points[i].xyz);
 
-					half distMesh = distance(output.worldPos, _Points[i].xyz);
+					half distMesh = distance(output.worldPos, _Points[i].xyz) ;
 					half distP = distance(_StartPoints[i].xyz, _Points[i].xyz);
 
-					if( distMesh<distP )
+					if( distMesh < distP && (distMesh-distP) < _Properties[i].x )
 					{
-						half ri = _Properties[i].x;
-						half hi = 1 - saturate(distMesh / distP);
+						//half ri = _Properties[i].x;
+						half hi = 1 - saturate( distMesh / distP );
 						h += hi * _Properties[i].y;
 					}
 				}
 
-				h=saturate(h);
+				h=sin(h);
 
 				return _MainColor + _WaveColor * h;
 

@@ -1,6 +1,7 @@
 ﻿using UnityEngine.UI;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Collections;
 
 public class MenuManager : MonoBehaviour
 {
@@ -9,11 +10,23 @@ public class MenuManager : MonoBehaviour
 
 	void Awake()
     {
-		phoneButton.GetComponent<Button>().onClick.AddListener(delegate { Play(SceneType.PHONE); });
-		vrButton.GetComponent<Button>().onClick.AddListener(delegate { Play(SceneType.VR); });
+        //phoneButton.GetComponent<Button>().onClick.AddListener(delegate { Play(SceneType.PHONE); });
+        //vrButton.GetComponent<Button>().onClick.AddListener(delegate { Play(SceneType.VR); });
+       
     }
 
-	private void Play(SceneType plrType)
+    
+
+    public void Player1Start() {
+
+    }
+
+    public void Player2Start() {
+
+
+    }
+
+	/*private void Play(SceneType plrType)
     {
         menu.SetActive(false);
 		switch (plrType) {
@@ -26,5 +39,5 @@ public class MenuManager : MonoBehaviour
 		}
 		Debug.Log ("scena " + plrType + " caricata");
 
-    }
+    }*/
 }
