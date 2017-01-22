@@ -99,6 +99,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\FillSpawn.cs" />
+    <Compile Include="Assets\FollowPlayer.cs" />
     <Compile Include="Assets\GoogleVR\DemoScenes\ControllerDemo\ControllerDebugInfo.cs" />
     <Compile Include="Assets\GoogleVR\DemoScenes\ControllerDemo\ControllerDemoManager.cs" />
     <Compile Include="Assets\GoogleVR\DemoScenes\HeadsetDemo\FPS.cs" />
@@ -235,14 +237,15 @@
     <Compile Include="Assets\Libraries\TouchScript\Scripts\Utils\TransformUtils.cs" />
     <Compile Include="Assets\Resources\SingletonPrefabs\Dialog.cs" />
     <Compile Include="Assets\Scripts\Audio\IntelliScream.cs" />
+    <Compile Include="Assets\Scripts\GNEGNEGNE\EnemyManager.cs" />
     <Compile Include="Assets\Scripts\GNEGNEGNE\FloorAntaniScript.cs" />
     <Compile Include="Assets\Scripts\GNEGNEGNE\Gnenemy.cs" />
     <Compile Include="Assets\Scripts\GNEGNEGNE\WallAntaniScript.cs" />
     <Compile Include="Assets\Scripts\MINIJson.cs" />
     <Compile Include="Assets\Scripts\Menu\MenuManager.cs" />
     <Compile Include="Assets\Scripts\Menu\VrMenuManager.cs" />
+    <Compile Include="Assets\Scripts\PlayerController\Player.cs" />
     <Compile Include="Assets\Scripts\PlayerController\Targettable.cs" />
-    <Compile Include="Assets\Scripts\PlayerController\TeleportWave.cs" />
     <Compile Include="Assets\Scripts\TestShader\MovingSoundWave.cs" />
     <Compile Include="Assets\Scripts\TestShader\VoiceLightShader2.cs" />
     <Compile Include="Assets\Scripts\Utils\Singleton.cs" />
