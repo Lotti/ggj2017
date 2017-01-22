@@ -117,7 +117,7 @@ public class Networking : Singleton<Networking> {
 		this.topic = topicPrefix + code;
 		client.Subscribe(new string[] { this.topic }, new byte[] { MqttMsgBase.QOS_LEVEL_AT_LEAST_ONCE });
 		Debug.Log ("subscribed to topic " + this.topic);
-		UnityEngine.SceneManagement.SceneManager.LoadScene ("testShader2");
+		UnityEngine.SceneManagement.SceneManager.LoadScene ("InGame");
 	}
 
 	public void gameStart() {

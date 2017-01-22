@@ -7,10 +7,16 @@ public class WallAntaniScript : MonoBehaviour {
 
 	public float MaxTime = 10f;
 
+	public Material p2Material;
+
 	// Use this for initialization
 	void Start () {
 
 		float boolean=Random.Range (0, 4f);
+
+		if (Networking.Instance.PlayerType == 2) {
+			this.GetComponent<Renderer> ().material = p2Material;
+		}
 
 		if (boolean > 3) 
 		{

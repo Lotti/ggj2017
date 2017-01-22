@@ -43,7 +43,7 @@ public class IntelliScream : Singleton<IntelliScream> {
 		var dB = 20 * Mathf.Log ( rms / rmsRef, 10f );
 		if ( dB >= -5f && !_isScreaming ) {
 			_isScreaming = true;
-			Debug.LogWarning ( "STRILLOOOOO!!!" );
+			//Debug.LogWarning ( "STRILLOOOOO!!!" );
             fillBaR.fillAmount = 0;
 
             if ( OnScream != null ) {
@@ -56,12 +56,12 @@ public class IntelliScream : Singleton<IntelliScream> {
 	IEnumerator _WaitForScream () {
 		float timeStart = Time.time;
         fillBaR.fillAmount = 0;
-        while ( ( Time.time - timeStart ) <= 5f )
+        while ( ( Time.time - timeStart ) <= 1.5f )
         {
-            fillBaR.fillAmount = (Time.time - timeStart)/5f;
+            fillBaR.fillAmount = (Time.time - timeStart)/1.5f;
             yield return null;
 		}
-		Debug.LogWarning ( "XXX => STRILLOOOOO!!!" );
+		//Debug.LogWarning ( "XXX => STRILLOOOOO!!!" );
 		_isScreaming = false;
 	}
 
