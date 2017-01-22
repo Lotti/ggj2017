@@ -20,7 +20,8 @@ public class MenuManager : MonoBehaviour
 
 	public void GOPiSandiMartr()
 	{
-		UnityEngine.SceneManagement.SceneManager.LoadScene ("InGame");
+		UnityEngine.SceneManagement.SceneManager.LoadScene("InGame");
+		PlayMusic.Instance.BASTAFERMALAMMUSICA();
 	}
 
     public void Player1Start() {
@@ -31,18 +32,25 @@ public class MenuManager : MonoBehaviour
 		inputField.SetActive(false);
 		pin.SetActive(true);
 		code.GetComponent<Text>().text = Networking.Instance.playAsPlayer1();
-        PlayMusic.Instance.BASTAFERMALAMMUSICA();
     }
 
     public void Player2Start() {
-		vrButton.SetActive (false);
-		phoneButton.SetActive (false);
+		vrButton.SetActive(false);
+		phoneButton.SetActive(false);
 
 		panel.gameObject.SetActive(true);
 		inputField.SetActive(true);
 		pin.SetActive(false);
-        PlayMusic.Instance.BASTAFERMALAMMUSICA();
     }
+
+	public void backToPlayerSelection() {
+		panel.gameObject.SetActive(false);
+		inputField.SetActive(false);
+		pin.SetActive(false);
+
+		vrButton.SetActive(true);
+		phoneButton.SetActive(true);
+	}
 
 	public void ConfirmPin() {
 		string t = inpF.text;
