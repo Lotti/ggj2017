@@ -30,7 +30,7 @@ public class ExitGateScript : MonoBehaviour {
 	void OnTriggerEnter(Collider g) {
 		Player p = g.gameObject.GetComponent<Player>();
 		if (p != null) {
-			Networking.Instance.gameOver();
+			p.gameOver(true);
 		}
 	}
 }

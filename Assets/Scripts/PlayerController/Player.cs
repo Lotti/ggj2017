@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : Singleton<Player>
 {
@@ -9,10 +10,15 @@ public class Player : Singleton<Player>
     public LayerMask floorMask;
 	public float height = 1.7f;
 
+	public GameObject[] endGamePanels;
+	public GameObject[] endGameWin;
+	public GameObject[] endGameLose;
+
 	void Start(){
-		
-		if(Networking.Instance.PlayerType==1)
+		isGameOver = false;
+		if (Networking.Instance.PlayerType == 1) {
 			IntelliScream.Instance.OnScream += VoiceLightShader2.Instance.SpawnVoice;	
+		}
 	}
 	void OnEnable() {
 		if(Networking.IsInstanced())
@@ -29,7 +35,6 @@ public class Player : Singleton<Player>
 
 	void applyIncomingData( RoomPackage rp ) {
 		this._roomPackageToCheck = rp;
-
 	}
     // Update is called once per frame
     void Update ()
@@ -59,6 +64,49 @@ public class Player : Singleton<Player>
 			}
 
 		}
-    }
 
+		if (isGameOver) {
+			gameOverDelta += Time.deltaTime;
+			if (gameOverDelta >= gameOverDuration) {
+				isGameOver = false;
+				gameOverDelta = 0f;
+				foreach(GameObject p in endGamePanels) {
+					p.SetActive(false);
+				}		
+				foreach(GameObject p in endGameWin) {
+					p.SetActive(false);
+				}		
+				foreach(GameObject p in endGameLose) {
+					p.SetActive(false);
+				}
+				SceneManager.LoadScene("StartMenu");
+			}
+		}
+    }
+		
+	private bool isGameOver = false;
+	private float gameOverDuration = 5f;
+	private float gameOverDelta = 0f;
+	public void gameOver(bool win) {
+		Networking.Instance.gameOver();	
+
+		foreach(GameObject p in endGamePanels) {
+			p.SetActive(true);
+		}
+		if (win) {
+			foreach (GameObject p in endGameWin) {
+				p.SetActive(true);
+			}
+			foreach (GameObject p in endGameLose) {
+				p.SetActive(false);
+			}
+		} else {
+			foreach (GameObject p in endGameWin) {
+				p.SetActive(false);
+			}
+			foreach(GameObject p in endGameLose) {
+				p.SetActive(true);
+			}
+		}
+	}
 }
