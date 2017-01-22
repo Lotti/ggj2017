@@ -12,9 +12,25 @@ public class Player : Singleton<Player>
 	void Start(){
 		
 		if(Networking.Instance.PlayerType==1)
-			IntelliScream.Instance.OnScream += VoiceLightShader2.Instance.SpawnVoice;
+			IntelliScream.Instance.OnScream += VoiceLightShader2.Instance.SpawnVoice;	
+	}
+	void OnEnable() {
+		if(Networking.IsInstanced())
+			Networking.Instance.incomingData += applyIncomingData;
 	}
 
+	void OnDisable() {
+
+		if(Networking.IsInstanced())
+			Networking.Instance.incomingData -= applyIncomingData; 
+	}
+
+	RoomPackage _roomPackageToCheck=null;
+
+	void applyIncomingData( RoomPackage rp ) {
+		this._roomPackageToCheck = rp;
+
+	}
     // Update is called once per frame
     void Update ()
     {
@@ -37,7 +53,10 @@ public class Player : Singleton<Player>
 			}
 		} else {
 
-			//Refresh position dal cazzo di server, fuck!
+			if (_roomPackageToCheck != null) {
+				this.transform.position = Vector3.Lerp (this.transform.position, _roomPackageToCheck.heroPosition, 0.5f);
+				this.transform.eulerAngles = Vector3.Lerp (this.transform.eulerAngles, _roomPackageToCheck.heroEuler, 0.5f);
+			}
 
 		}
     }

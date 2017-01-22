@@ -7,6 +7,8 @@ public class VoiceLightShader2 : Singleton<VoiceLightShader2> {
 
 	public List<MovingSoundWave> go;
 
+	public GameObject heroParent;
+	public GameObject viewerParent;
 	public Transform playerT;
 
 	public List<Material> materials;
@@ -31,8 +33,18 @@ public class VoiceLightShader2 : Singleton<VoiceLightShader2> {
 			}
 		}
 
-		if (Networking.IsInstanced()) {
-			Networking.Instance.gameStart();
+		if (Networking.IsInstanced ()) {
+			if (Networking.Instance.PlayerType == 1) 
+			{
+				Networking.Instance.gameStart();
+
+				viewerParent.SetActive (false);
+			} 
+			else 
+			{
+				playerT.gameObject.SetActive (false);
+
+			}
 		}
 	}
 
