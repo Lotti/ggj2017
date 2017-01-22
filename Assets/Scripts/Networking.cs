@@ -105,10 +105,15 @@ public class Networking : Singleton<Networking> {
 
 	private float time = 0f;
 	private float timeHello = 0.2f;
+	private bool isGameRunning = false;
+	public bool IsGameRunning { get { return this.isGameRunning; } set { this.time = 0f; this.isGameRunning = value; } }
 	void Update() {
-		if (time >= timeHello) {
-			time = 0f;
-			this.sendData();
+		if (isGameRunning) {
+			time += Time.deltaTime;
+			if (time >= timeHello) {
+				time = 0f;
+				this.sendData();
+			}
 		}
 	}
 
