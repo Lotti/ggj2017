@@ -115,10 +115,12 @@ public class VoiceLightShader2 : Singleton<VoiceLightShader2> {
 			{
 				var waveGO = go[i];
 
-				vPos[i] = waveGO.transform.position;
-				vStartPos [i] = waveGO.StartPosition;
-				properties[i] = new Vector2(waveGO.radius, waveGO.remainingLife );
-
+                if (waveGO != null)
+                {
+                    vPos[i] = waveGO.transform.position;
+                    vStartPos[i] = waveGO.StartPosition;
+                    properties[i] = new Vector2(waveGO.radius, waveGO.remainingLife);
+                }
 			}
 
 			foreach (var m in this.materials) 
