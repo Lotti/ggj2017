@@ -30,18 +30,24 @@ public class VoiceLightShader2 : Singleton<VoiceLightShader2> {
 				materials.Add (r.sharedMaterial);
 			}
 		}
+		if (Networking.IsInstanced () && Networking.Instance.PlayerType==1)
+			Networking.Instance.IsGameRunning = true;
 
 	}
 
 	public void Update()
 	{
-#if UNITY_EDITOR
-        if (Input.GetKeyUp (KeyCode.Space) || (Input.GetMouseButtonUp(0)) ) 
+		if (Networking.Instance.PlayerType == 1) 
 		{
-			this.SpawnVoid (this.playerT.forward);
+			#if UNITY_EDITOR
+			if (Input.GetKeyUp (KeyCode.Space) || (Input.GetMouseButtonUp(0)) ) 
+			{
+				this.SpawnVoid (this.playerT.forward);
+			}
+			#endif
+			CheckObjPositions ();
 		}
-#endif
-        CheckObjPositions ();
+
 	}
 
     public void SpawnVoice()

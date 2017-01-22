@@ -5,7 +5,7 @@ using System;
 using UnityEngine.Audio;
 using UnityEngine.UI;
 
-public class IntelliScream : MonoBehaviour {
+public class IntelliScream : Singleton<IntelliScream> {
 
 	private AudioSource audioS;
 	private bool _isScreaming = false;
@@ -13,14 +13,14 @@ public class IntelliScream : MonoBehaviour {
 	int freq = 44100;
     public Image fillBaR;
 
-	public static event Action OnScream;
+	public Action OnScream;
 
 	public float rmsRef = 1f;
 	public AudioMixer mixer;
 
 	void Awake () {
 		audioS = GetComponent<AudioSource> ();
-        OnScream = VoiceLightShader2.Instance.SpawnVoice;
+
 	}
 
 	void Start () {

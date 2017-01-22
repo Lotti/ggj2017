@@ -9,6 +9,12 @@ public class Player : Singleton<Player>
     public LayerMask floorMask;
 	public float height = 1.7f;
 
+	void Start(){
+		
+		if(Networking.Instance.PlayerType==1)
+			IntelliScream.Instance.OnScream += VoiceLightShader2.Instance.SpawnVoice;
+	}
+
     // Update is called once per frame
     void Update ()
     {
@@ -35,4 +41,5 @@ public class Player : Singleton<Player>
 
 		}
     }
+
 }

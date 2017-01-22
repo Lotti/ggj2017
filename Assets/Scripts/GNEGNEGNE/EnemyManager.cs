@@ -11,11 +11,14 @@ public class EnemyManager : Singleton<EnemyManager> {
 	// Update is called once per frame
 
 	void OnEnable() {
-		Networking.Instance.incomingData += applyIncomingData;
+		if(Networking.IsInstanced())
+			Networking.Instance.incomingData += applyIncomingData;
 	}
 
 	void OnDisable() {
-		Networking.Instance.incomingData -= applyIncomingData; 
+		
+		if(Networking.IsInstanced())
+			Networking.Instance.incomingData -= applyIncomingData; 
 	}
 
 	void applyIncomingData(RoomPackage rp) {
