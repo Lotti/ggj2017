@@ -236,13 +236,16 @@
     <Compile Include="Assets\Libraries\TouchScript\Scripts\Utils\TimedSequence.cs" />
     <Compile Include="Assets\Libraries\TouchScript\Scripts\Utils\TouchUtils.cs" />
     <Compile Include="Assets\Libraries\TouchScript\Scripts\Utils\TransformUtils.cs" />
+    <Compile Include="Assets\PlayMusic.cs" />
     <Compile Include="Assets\Resources\SingletonPrefabs\Dialog.cs" />
     <Compile Include="Assets\Scripts\Audio\IntelliScream.cs" />
     <Compile Include="Assets\Scripts\GNEGNEGNE\EnemyManager.cs" />
     <Compile Include="Assets\Scripts\GNEGNEGNE\FloorAntaniScript.cs" />
     <Compile Include="Assets\Scripts\GNEGNEGNE\Gnenemy.cs" />
+    <Compile Include="Assets\Scripts\GNEGNEGNE\InGameManager.cs" />
     <Compile Include="Assets\Scripts\GNEGNEGNE\WallAntaniScript.cs" />
     <Compile Include="Assets\Scripts\MINIJson.cs" />
+    <Compile Include="Assets\Scripts\Menu\MenuFakeVoice.cs" />
     <Compile Include="Assets\Scripts\Menu\MenuManager.cs" />
     <Compile Include="Assets\Scripts\Menu\VrMenuManager.cs" />
     <Compile Include="Assets\Scripts\Networking.cs" />
@@ -251,6 +254,7 @@
     <Compile Include="Assets\Scripts\RoomPackage.cs" />
     <Compile Include="Assets\Scripts\TestShader\MovingSoundWave.cs" />
     <Compile Include="Assets\Scripts\TestShader\VoiceLightShader2.cs" />
+    <Compile Include="Assets\Scripts\Utils\CameraMove.cs" />
     <Compile Include="Assets\Scripts\Utils\MySerializer.cs" />
     <Compile Include="Assets\Scripts\Utils\Singleton.cs" />
     <Compile Include="Assets\Scripts\Utils\SingletonPrefab.cs" />
