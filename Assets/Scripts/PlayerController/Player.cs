@@ -74,15 +74,7 @@ public class Player : Singleton<Player>
 			if (gameOverDelta >= gameOverDuration) {
 				isGameOver = false;
 				gameOverDelta = 0f;
-				foreach(GameObject p in endGamePanels) {
-					p.SetActive(false);
-				}		
-				foreach(GameObject p in endGameWin) {
-					p.SetActive(false);
-				}		
-				foreach(GameObject p in endGameLose) {
-					p.SetActive(false);
-				}
+				Debug.LogWarning ("CAMBIO SCENA");
 				SceneManager.LoadScene("StartMenu");
 			}
 		}
@@ -92,30 +84,20 @@ public class Player : Singleton<Player>
 	private float gameOverDuration = 5f;
 	private float gameOverDelta = 0f;
 	public void gameOver(bool win) {
-		Networking.Instance.gameOver();	
-
-		foreach(GameObject p in endGamePanels) {
-			p.SetActive(true);
-		}
+		Networking.Instance.gameOver();
+		int p = Networking.Instance.PlayerType;
+		endGamePanels [p - 1].SetActive (true);
 		if (win) {
-			foreach (GameObject p in endGameWin) {
-				p.SetActive(true);
-			}
-			foreach (GameObject p in endGameLose) {
-				p.SetActive(false);
-			}
+			endGameWin [p - 1].SetActive (true);
+			endGameLose [p - 1].SetActive (false);
 		} else {
-			foreach (GameObject p in endGameWin) {
-				p.SetActive(false);
-			}
-			foreach(GameObject p in endGameLose) {
-				p.SetActive(true);
-			}
+			endGameWin [p - 1].SetActive (false);
+			endGameLose [p - 1].SetActive (true);
 		}
 	}
 
 	void OnTriggerEnter(Collider c) {
-		if (c.CompareTag("Enemy")) {
+		if (LayerMask.LayerToName(c.gameObject.layer) == "Enemies") {
 			gameOver(false);
 		}
 	}
