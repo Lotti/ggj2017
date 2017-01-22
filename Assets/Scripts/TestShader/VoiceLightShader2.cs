@@ -30,9 +30,10 @@ public class VoiceLightShader2 : Singleton<VoiceLightShader2> {
 				materials.Add (r.sharedMaterial);
 			}
 		}
-		if (Networking.IsInstanced () && Networking.Instance.PlayerType==1)
-			Networking.Instance.IsGameRunning = true;
 
+		if (Networking.IsInstanced()) {
+			Networking.Instance.gameStart();
+		}
 	}
 
 	public void Update()

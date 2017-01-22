@@ -21,7 +21,9 @@ public class Networking : Singleton<Networking> {
 	private int msgCounter = 0;
 	public int PlayerType { get { return playerType; } }
 	public string Topic { get { return topic; } }
-
+	private float time = 0f;
+	private float timeHello = 0.2f;
+	private bool isGameRunning = false;
 	public Action<RoomPackage> incomingData;
 
 	void Awake () {
@@ -33,10 +35,6 @@ public class Networking : Singleton<Networking> {
 		DontDestroyOnLoad (this.gameObject);
 	}
 
-	private float time = 0f;
-	private float timeHello = 0.2f;
-	private bool isGameRunning = false;
-	public bool IsGameRunning { get { return this.isGameRunning; } set { this.time = 0f; this.isGameRunning = value; } }
 	void Update() {
 		if (isGameRunning) {
 			time += Time.deltaTime;
@@ -107,8 +105,9 @@ public class Networking : Singleton<Networking> {
 		msgCounter = 0;
 		string code = UnityEngine.Random.Range(1111,9999).ToString();
 		this.topic = topicPrefix + code;
-		//client.Subscribe(new string[] { this.topic }, new byte[] { MqttMsgBase.QOS_LEVEL_AT_LEAST_ONCE });
-		//Debug.Log ("subscribed to topic " + this.topic);
+		// il player 1 non deve più inviare roba
+		// client.Subscribe(new string[] { this.topic }, new byte[] { MqttMsgBase.QOS_LEVEL_AT_LEAST_ONCE });
+		// Debug.Log ("subscribed to topic " + this.topic);
 		return code;
 	}
 
@@ -119,5 +118,19 @@ public class Networking : Singleton<Networking> {
 		client.Subscribe(new string[] { this.topic }, new byte[] { MqttMsgBase.QOS_LEVEL_AT_LEAST_ONCE });
 		Debug.Log ("subscribed to topic " + this.topic);
 		UnityEngine.SceneManagement.SceneManager.LoadScene ("testShader2");
+	}
+
+	public void gameStart() {
+		if (PlayerType == 1) {
+			isGameRunning = true;
+		}
+	}
+
+	public void gameOver() {
+		if (PlayerType == 1) {
+			isGameRunning = false;
+		} else {
+			client.Unsubscribe(new string[] { this.topic });
+		}
 	}
 }
