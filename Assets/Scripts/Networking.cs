@@ -49,15 +49,19 @@ public class Networking : Singleton<Networking> {
 
 	void OnEnable() {
 		client.MqttMsgPublishReceived += client_MsgReceived; 
+		client.MqttMsgSubscribed += client_MsgSubscribed;
+		client.MqttMsgPublishReceived += client_MsgPublish;
 	}
-
+		
 	void OnDisable() {
 		client.MqttMsgPublishReceived -= client_MsgReceived; 
+		client.MqttMsgSubscribed -= client_MsgSubscribed;
+		client.MqttMsgPublishReceived -= client_MsgPublish;
 	}
 
 	void client_MsgReceived(object c, MqttMsgPublishEventArgs ev) { 
 		string msg = System.Text.Encoding.UTF8.GetString (ev.Message);
-		Debug.Log ("Received -> " + ev.Topic + ": "+ msg);
+		Debug.Log("client_MsgReceived: " + ev.Topic + " - "+ msg);
 
 		try {
 			RoomPackage rp = RoomPackage.fromJSON(msg);
@@ -72,6 +76,15 @@ public class Networking : Singleton<Networking> {
 			Debug.LogError(e);
 		}
 	} 
+
+	void client_MsgSubscribed(object c, MqttMsgSubscribedEventArgs ev) { 
+		Debug.Log("client_MsgReceived: " +ev.MessageId + " - " + ev.GrantedQoSLevels);
+	}
+
+	void client_MsgPublish (object sender, MqttMsgPublishEventArgs ev) {
+		string msg = System.Text.Encoding.UTF8.GetString(ev.Message);
+		Debug.Log("client_MsgPublish: " +ev.Topic + " - " + msg);
+	}
 
 	void sendData() {
 		// Invia i dati di gioco
