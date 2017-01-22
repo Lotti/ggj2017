@@ -27,6 +27,7 @@ public class MenuManager : MonoBehaviour
 		inputField.SetActive(false);
 		pin.SetActive(true);
 		code.GetComponent<Text>().text = Networking.Instance.playAsPlayer1();
+        PlayMusic.Instance.BASTAFERMALAMMUSICA();
     }
 
     public void Player2Start() {
@@ -36,6 +37,7 @@ public class MenuManager : MonoBehaviour
 		panel.gameObject.SetActive(true);
 		inputField.SetActive(true);
 		pin.SetActive(false);
+        PlayMusic.Instance.BASTAFERMALAMMUSICA();
     }
 
 	public void ConfirmPin() {

@@ -4,20 +4,20 @@ using UnityEngine;
 
 public class PlayMusic : Singleton<PlayMusic> {
 
+    public AudioSource music;
+
     void Awake()
     {
         _instance = this;
         DontDestroyOnLoad(_instance);
     }
 
-	// Use this for initialization
-	void Start () {
-       
-
+    // Use this for initialization
+    public void BASTAFERMALAMMUSICA()
+    {
+        music.Stop();
+        Destroy(_instance);
     }
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+
+
 }

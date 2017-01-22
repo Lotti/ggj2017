@@ -54,8 +54,8 @@ public class Player : Singleton<Player>
 		} else {
 
 			if (_roomPackageToCheck != null) {
-				this.transform.position = Vector3.Lerp (this.transform.position, _roomPackageToCheck.heroPosition, 0.5f);
-				this.transform.eulerAngles = Vector3.Lerp (this.transform.eulerAngles, _roomPackageToCheck.heroEuler, 0.5f);
+				this.transform.position = Vector3.Lerp (this.transform.position, _roomPackageToCheck.heroPosition, 0.01f);
+				this.transform.eulerAngles = Vector3.Lerp (this.transform.eulerAngles, _roomPackageToCheck.heroEuler, 0.01f);
 			}
 
 		}

@@ -53,10 +53,10 @@ public class EnemyManager : Singleton<EnemyManager> {
 			}
 
 			for (int i = 0; i < _roomPackageToCheck.enemiesPosition.Count; i++) {
-				enemies[i].transform.position = Vector3.Lerp(enemies[i].transform.position, _roomPackageToCheck.enemiesPosition [i], 0.5f);
+				enemies[i].transform.position = Vector3.Lerp(enemies[i].transform.position, _roomPackageToCheck.enemiesPosition [i], 0.01f);
 			}
 			for (int i = 0; i < _roomPackageToCheck.enemiesEuler.Count; i++) {
-				enemies[i].transform.eulerAngles = Vector3.Lerp(enemies[i].transform.eulerAngles, _roomPackageToCheck.enemiesEuler[i], 0.5f);
+				enemies[i].transform.eulerAngles = Vector3.Lerp(enemies[i].transform.eulerAngles, _roomPackageToCheck.enemiesEuler[i], 0.01f);
 			}
 
 			_roomPackageToCheck = null;
