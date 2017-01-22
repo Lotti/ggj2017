@@ -2,14 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Collections;
+using System;
 
 public class MenuManager : MonoBehaviour
 {
 	public GameObject menu, phoneButton, vrButton, panel, pin, inputField, code;
 	public enum SceneType { PHONE, VR };
-
+	private InputField inpF;
 	void Awake()
     {
+		inpF = inputField.GetComponent<InputField>();
+		inpF.characterLimit = 4;
+
         //phoneButton.GetComponent<Button>().onClick.AddListener(delegate { Play(SceneType.PHONE); });
         //vrButton.GetComponent<Button>().onClick.AddListener(delegate { Play(SceneType.VR); });
     }
@@ -41,7 +45,16 @@ public class MenuManager : MonoBehaviour
     }
 
 	public void ConfirmPin() {
-		Networking.Instance.playAsPlayer2(inputField.GetComponent<InputField>().text);	
+		string t = inpF.text;
+
+		if (t.Length == 4) {
+			try {
+				Convert.ToInt32(t);
+				Networking.Instance.playAsPlayer2(t);	
+			} catch(Exception e) {
+				inpF.text = "";
+			}
+		}
 	}
 
 	/*private void Play(SceneType plrType)
