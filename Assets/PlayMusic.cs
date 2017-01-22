@@ -15,9 +15,9 @@ public class PlayMusic : Singleton<PlayMusic> {
     // Use this for initialization
     public void BASTAFERMALAMMUSICA()
     {
-        music.Stop();
+		if (music != null) {
+			music.Stop ();
+		}
         Destroy(_instance);
     }
-
-
 }
