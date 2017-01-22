@@ -108,7 +108,7 @@ public class Networking : Singleton<Networking> {
 	void Update() {
 		if (time >= timeHello) {
 			time = 0f;
-			sendData();
+			this.sendData();
 		}
 	}
 
@@ -147,7 +147,7 @@ public class Networking : Singleton<Networking> {
 		}
 	} 
 
-	void SendData() {
+	void sendData() {
 		// Invia i dati di gioco
 		List<Vector3> enemiesPosition = new List<Vector3>();
 		List<Vector3> enemiesEuler = new List<Vector3>();
