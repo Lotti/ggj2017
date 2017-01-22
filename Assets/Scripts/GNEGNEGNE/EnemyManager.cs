@@ -7,7 +7,7 @@ public class EnemyManager : Singleton<EnemyManager> {
 	public GameObject stampino;
 
 	private float lastTimeUpdate=0;
-	private List<Transform> enemies = new List<Transform> ();
+	public List<Transform> enemies = new List<Transform> ();
 	// Update is called once per frame
 	void Update () 
 	{
@@ -38,7 +38,7 @@ public class EnemyManager : Singleton<EnemyManager> {
 			{
 				enemies [i].transform.position = Networking.Instance.enemiesTransform [i].position;
 				enemies [i].transform.rotation = Networking.Instance.enemiesTransform [i].rotation;
-			}
+			}	
 
 		}
 
