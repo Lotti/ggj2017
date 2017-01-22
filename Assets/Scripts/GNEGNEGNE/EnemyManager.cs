@@ -22,19 +22,19 @@ public class EnemyManager : Singleton<EnemyManager> {
 		} 
 		else if(Networking.IsInstanced())
 		{
-			while (enemies.Count < Networking.Instance.enemiesTransform.Length) 
+			while (enemies.Count < Networking.Instance.enemiesTransform.Count) 
 			{
 				Spawn ();
 			}
 
-			while (enemies.Count > Networking.Instance.enemiesTransform.Length) 
+			while (enemies.Count > Networking.Instance.enemiesTransform.Count) 
 			{
 				var todestroy = enemies [enemies.Count - 1];
 				enemies.RemoveAt (enemies.Count - 1);
 				Destroy (todestroy.gameObject);
 			}
 
-			for (int i = 0; i < Networking.Instance.enemiesTransform.Length; i++) 
+			for (int i = 0; i < Networking.Instance.enemiesTransform.Count; i++) 
 			{
 				enemies [i].transform.position = Networking.Instance.enemiesTransform [i].position;
 				enemies [i].transform.rotation = Networking.Instance.enemiesTransform [i].rotation;

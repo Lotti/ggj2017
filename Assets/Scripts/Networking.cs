@@ -23,7 +23,7 @@ public class Networking : Singleton<Networking> {
 	public string Topic { get { return topic; } }
 
 	public Transform heroTransform;
-	public Transform[] enemiesTransform;
+	public List<Transform> enemiesTransform = new List<Transform>();
 
 	abstract class MQTTPackage {
 		abstract public string ToString();
