@@ -20,7 +20,7 @@ public class EnemyManager : Singleton<EnemyManager> {
 			}
 			lastTimeUpdate += Time.deltaTime;
 		} 
-		else 
+		else if(Networking.IsInstanced())
 		{
 			while (enemies.Count < Networking.Instance.enemiesTransform.Length) 
 			{
