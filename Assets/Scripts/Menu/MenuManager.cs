@@ -24,8 +24,8 @@ public class MenuManager : MonoBehaviour
 
 	public void GOPiSandiMartr()
 	{
-		UnityEngine.SceneManagement.SceneManager.LoadScene("InGame");
 		PlayMusic.Instance.BASTAFERMALAMMUSICA();
+		UnityEngine.SceneManagement.SceneManager.LoadScene("InGame");
 	}
 
     public void Player1Start() {
