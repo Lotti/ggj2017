@@ -41,6 +41,8 @@ public class Gnenemy : MonoBehaviour
 			var direction = (target - this.transform.position ).normalized;
 			this.transform.position += direction * speed * Time.deltaTime;
 			this.transform.forward = direction;
+
+            
 		}
 
 	}
