@@ -16,10 +16,13 @@ public class MenuManager : MonoBehaviour
 
 	public void GOPiSandiMartr()
 	{
-		UnityEngine.SceneManagement.SceneManager.LoadScene ("testShader2");
+		UnityEngine.SceneManagement.SceneManager.LoadScene ("InGame");
 	}
 
     public void Player1Start() {
+		vrButton.SetActive (false);
+		phoneButton.SetActive (false);
+
 		panel.SetActive(true);
 		inputField.SetActive(false);
 		pin.SetActive(true);
@@ -27,6 +30,9 @@ public class MenuManager : MonoBehaviour
     }
 
     public void Player2Start() {
+		vrButton.SetActive (false);
+		phoneButton.SetActive (false);
+
 		panel.gameObject.SetActive(true);
 		inputField.SetActive(true);
 		pin.SetActive(false);

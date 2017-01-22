@@ -5,13 +5,9 @@ using UnityEngine;
 
 public class VoiceLightShader2 : Singleton<VoiceLightShader2> {
 
-	public List<MovingSoundWave> go;
-
-	public GameObject heroParent;
-	public GameObject heroIndicator;
-	public GameObject viewerParent;
 	public Transform playerT;
 
+	public List<MovingSoundWave> go;
 
 	public List<Material> materials;
 
@@ -35,22 +31,7 @@ public class VoiceLightShader2 : Singleton<VoiceLightShader2> {
 			}
 		}
 
-		if (Networking.IsInstanced ()) {
-			if (Networking.Instance.PlayerType == 1) 
-			{
-				Networking.Instance.gameStart();
 
-				heroParent.gameObject.SetActive (true);
-				viewerParent.SetActive (false);
-			} 
-			else 
-			{
-				heroIndicator.SetActive (true);	
-				heroParent.gameObject.SetActive (false);
-				playerT.gameObject.SetActive (false);
-
-			}
-		}
 	}
 
 	public void Update()
@@ -60,7 +41,7 @@ public class VoiceLightShader2 : Singleton<VoiceLightShader2> {
 			#if UNITY_EDITOR
 			if (Input.GetKeyUp (KeyCode.Space) || (Input.GetMouseButtonUp(0)) ) 
 			{
-				this.SpawnVoid (this.playerT.forward);
+				this.SpawnVoice (this.playerT.forward);
 			}
 			#endif
 			CheckObjPositions ();
@@ -70,11 +51,11 @@ public class VoiceLightShader2 : Singleton<VoiceLightShader2> {
 
     public void SpawnVoice()
     {
-        this.SpawnVoid(this.playerT.forward);
+        this.SpawnVoice(this.playerT.forward);
         Debug.Log("Spawn voice");
     }
 
-	public void SpawnVoid( Vector3 direction ){
+	public void SpawnVoice( Vector3 direction ){
 	
 		if (this.go.Count < 15)
 		{
