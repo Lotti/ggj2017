@@ -41,7 +41,7 @@ public class Player : Singleton<Player>
 					if (VoiceLightShader2.Instance.isThisPositionOk (hit.point))
 						this.transform.position = new Vector3 (hit.point.x, hit.point.y + this.height, hit.point.z);
 
-					VoiceLightShader2.Instance.SpawnVoid (Vector3.down);
+					VoiceLightShader2.Instance.SpawnVoice (Vector3.down);
 				}
 			}
 
