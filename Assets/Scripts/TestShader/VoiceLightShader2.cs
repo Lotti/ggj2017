@@ -33,7 +33,7 @@ public class VoiceLightShader2 : Singleton<VoiceLightShader2> {
 
 	}
 
-	public void  Update()
+	public void Update()
 	{
 #if UNITY_EDITOR
         if (Input.GetKeyUp (KeyCode.Space) || (Input.GetMouseButtonUp(0)) ) 

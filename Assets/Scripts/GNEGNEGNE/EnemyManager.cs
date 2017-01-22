@@ -8,24 +8,25 @@ public class EnemyManager : Singleton<EnemyManager> {
 
 	private float lastTimeUpdate=0;
 
-	void Start()
-	{
-		//Check multiminchia
-	}
-
 	// Update is called once per frame
 	void Update () 
 	{
-		if (lastTimeUpdate == 0 || lastTimeUpdate >= 10f) 
-		{
-			lastTimeUpdate = 0;
-			var gngng= GameObject.Instantiate (this.stampino);
-			gngng.transform.parent = this.transform;
-			gngng.transform.position = Player.Instance.transform.position + 
-				Player.Instance.transform.right*Random.Range(-5f,5f) + 
+		if (Networking.Instance.PlayerType == 1) {
+			if (lastTimeUpdate == 0 || lastTimeUpdate >= 10f) {
+				lastTimeUpdate = 0;
+				var gngng = GameObject.Instantiate (this.stampino);
+				gngng.transform.parent = this.transform;
+				gngng.transform.position = Player.Instance.transform.position +
+				Player.Instance.transform.right * Random.Range (-5f, 5f) +
 				Player.Instance.transform.forward * 5;
-			
+
+			}
+			lastTimeUpdate += Time.deltaTime;
+		} 
+		else 
+		{
+			//Spawn enemy
 		}
-		lastTimeUpdate += Time.deltaTime;
+
 	}
 }
