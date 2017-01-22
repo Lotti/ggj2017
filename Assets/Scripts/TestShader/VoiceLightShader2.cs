@@ -45,7 +45,7 @@ public class VoiceLightShader2 : Singleton<VoiceLightShader2> {
 			} 
 			else 
 			{
-				heroIndicator.SetActive (false);
+				heroIndicator.SetActive (true);	
 				heroParent.gameObject.SetActive (false);
 				playerT.gameObject.SetActive (false);
 
