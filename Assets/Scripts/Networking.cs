@@ -106,16 +106,16 @@ public class Networking : Singleton<Networking> {
 		playerType = 1;
 		msgCounter = 0;
 		string code = UnityEngine.Random.Range(1111,9999).ToString();
-		this.topic = topicPrefix+code;
+		this.topic = topicPrefix + code;
 		//client.Subscribe(new string[] { this.topic }, new byte[] { MqttMsgBase.QOS_LEVEL_AT_LEAST_ONCE });
-		Debug.Log ("subscribed to topic " + this.topic);
+		//Debug.Log ("subscribed to topic " + this.topic);
 		return code;
 	}
 
-	public void playAsPlayer2(string topic) {
+	public void playAsPlayer2(string code) {
 		playerType = 2;
 		msgCounter = 0;
-		this.topic = topic;
+		this.topic = topicPrefix + code;
 		client.Subscribe(new string[] { this.topic }, new byte[] { MqttMsgBase.QOS_LEVEL_AT_LEAST_ONCE });
 		Debug.Log ("subscribed to topic " + this.topic);
 		UnityEngine.SceneManagement.SceneManager.LoadScene ("testShader2");
