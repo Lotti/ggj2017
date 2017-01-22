@@ -101,6 +101,7 @@ public class Networking : Singleton<Networking> {
 
 		clientId = Guid.NewGuid().ToString(); 
 		client.Connect(clientId); 
+		DontDestroyOnLoad (this.gameObject);
 	}
 
 	private float time = 0f;
@@ -130,6 +131,7 @@ public class Networking : Singleton<Networking> {
 		Debug.Log ("Received -> " + ev.Topic + ": "+ msg);
 
 		try {
+
 			RoomPackage rp = RoomPackage.fromJSON(msg);
 			// Aggiorna i dati di gioco
 			if (rp.counter > msgCounter) {
@@ -138,7 +140,8 @@ public class Networking : Singleton<Networking> {
 				heroTransform.position = rp.heroPosition;
 				heroTransform.eulerAngles = rp.heroEuler;
 
-				for(int i = 0; i < rp.enemiesPosition.Count; i++) {
+				for(int i = 0; i < rp.enemiesPosition.Count; i++) 
+				{
 					enemiesTransform[i].position = rp.enemiesPosition[i];
 					enemiesTransform[i].eulerAngles = rp.enemiesEuler[i];
 					// TODO eliminare i nemici in eccesso rispetto ai dati in arrivo
@@ -182,5 +185,8 @@ public class Networking : Singleton<Networking> {
 		msgCounter = 0;
 		this.topic = topic;
 		client.Subscribe(new string[] { this.topic }, new byte[] { MqttMsgBase.QOS_LEVEL_AT_LEAST_ONCE });
+
+		UnityEngine.SceneManagement.SceneManager.LoadScene ("testShader2");
+
 	}
 }
