@@ -32,8 +32,8 @@ public class TextTyper : MonoBehaviour {
 	IEnumerator TypeText () {
 		foreach (char letter in message.ToCharArray()) 
 		{
-			textComp.text += letter;
 			if (this.isWriting) {
+				textComp.text += letter;
 				yield return 0;
 				yield return new WaitForSeconds (letterPause);
 			}
