@@ -118,7 +118,6 @@ public class Networking : Singleton<Networking> {
 		this.topic = topicPrefix + code;
 		client.Subscribe(new string[] { this.topic }, new byte[] { MqttMsgBase.QOS_LEVEL_AT_LEAST_ONCE });
 		Debug.Log ("subscribed to topic " + this.topic);
-		PlayMusic.Instance.BASTAFERMALAMMUSICA();
 		UnityEngine.SceneManagement.SceneManager.LoadScene("InGame");
 	}
 

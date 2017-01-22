@@ -24,7 +24,6 @@ public class MenuManager : MonoBehaviour
 
 	public void GOPiSandiMartr()
 	{
-		PlayMusic.Instance.BASTAFERMALAMMUSICA();
 		UnityEngine.SceneManagement.SceneManager.LoadScene("InGame");
 	}
 
@@ -39,7 +38,8 @@ public class MenuManager : MonoBehaviour
 		code.GetComponent<Text>().text = Networking.Instance.playAsPlayer1();
     }
 
-    public void Player2Start() {
+	public void Player2Start() {
+		PlayMusic.Instance.BASTAFERMALAMMUSICA();
 		vrButton.SetActive(false);
 		phoneButton.SetActive(false);
 
@@ -50,6 +50,7 @@ public class MenuManager : MonoBehaviour
     }
 
 	public void backToPlayerSelection() {
+		PlayMusic.Instance.BASTAFERMALAMMUSICA();
 		panel.gameObject.SetActive(false);
 		backButton.SetActive(false);
 		inputField.SetActive(false);
