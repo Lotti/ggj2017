@@ -25,6 +25,7 @@ public class Networking : Singleton<Networking> {
 	private float timeHello = 0.2f;
 	private bool isGameRunning = false;
 	public Action<RoomPackage> incomingData;
+	private int varGameOver = 0;
 
 	void Awake () {
 		// create client instance
@@ -94,7 +95,7 @@ public class Networking : Singleton<Networking> {
 			enemiesEuler.Add(t.eulerAngles);
 		}
 		Transform p = Player.Instance.transform;
-		RoomPackage rp = new RoomPackage(++msgCounter, p.position, p.eulerAngles, enemiesPosition, enemiesEuler);
+		RoomPackage rp = new RoomPackage(++msgCounter, p.position, p.eulerAngles, enemiesPosition, enemiesEuler, varGameOver);
 
 		string msg = rp.ToJSON();
 		client.Publish(this.topic, System.Text.Encoding.UTF8.GetBytes(msg), MqttMsgBase.QOS_LEVEL_AT_LEAST_ONCE, true);
@@ -102,6 +103,7 @@ public class Networking : Singleton<Networking> {
 	}	
 	
 	public string playAsPlayer1() {
+		varGameOver = 0;
 		playerType = 1;
 		msgCounter = 0;
 		string code = UnityEngine.Random.Range(1111,9999).ToString();
@@ -113,6 +115,7 @@ public class Networking : Singleton<Networking> {
 	}
 
 	public void playAsPlayer2(string code) {
+		varGameOver = 0;
 		playerType = 2;
 		msgCounter = 0;
 		this.topic = topicPrefix + code;
@@ -127,7 +130,13 @@ public class Networking : Singleton<Networking> {
 		}
 	}
 
-	public void gameOver() {
+	public void gameOver(bool win) {
+		if (win) {
+			varGameOver = 1;
+		} else {
+			varGameOver = 2;
+		}
+
 		if (PlayerType == 1) {
 			isGameRunning = false;
 		} else {

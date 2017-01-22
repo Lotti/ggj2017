@@ -9,14 +9,16 @@ public class RoomPackage {
 	public Vector3 heroEuler = default(Vector3);
 	public List<Vector3> enemiesPosition = default(List<Vector3>);
 	public List<Vector3> enemiesEuler = default(List<Vector3>);
+	public int gameOver = 0;
 
 	public RoomPackage(int counter, Vector3 heroPosition, Vector3 heroEuler, 
-		List<Vector3> enemiesPosition, List<Vector3> enemiesEuler) {
+		List<Vector3> enemiesPosition, List<Vector3> enemiesEuler, int gameOver) {
 		this.counter = counter;
 		this.heroPosition = heroPosition;
 		this.heroEuler = heroEuler;
 		this.enemiesPosition = enemiesPosition;
 		this.enemiesEuler = enemiesEuler;
+		this.gameOver = gameOver;
 	}
 
 	public string ToJSON() {
@@ -39,6 +41,7 @@ public class RoomPackage {
 			{"heroEuler", this.heroEuler.ToList()},
 			{"enemiesPosition", enemiesPositionList},
 			{"enemiesEuler", enemiesEulerList},
+			{"gameOver", gameOver},
 		});
 	}
 
@@ -46,9 +49,10 @@ public class RoomPackage {
 		Dictionary<string, object> d = (Dictionary<string, object>) MiniJSon.Json.Deserialize(json);
 		if (d.ContainsKey("counter") &&
 			d.ContainsKey("heroPosition") && d.ContainsKey("heroEuler") && 
-			d.ContainsKey("enemiesPosition") && d.ContainsKey("enemiesEuler")) {
+			d.ContainsKey("enemiesPosition") && d.ContainsKey("enemiesEuler") && d.ContainsKey("gameOver")) {
 
 			int counter = Convert.ToInt32(d["counter"]);
+			int gameOver = Convert.ToInt32(d["gameOver"]);
 			Vector3 heroPosition = new Vector3().FromList((List<object>) d["heroPosition"]);
 			Vector3 heroEuler = new Vector3().FromList((List<object>) d["heroEuler"]);
 
@@ -62,7 +66,7 @@ public class RoomPackage {
 				enemiesEuler.Add(new Vector3().FromList(e));
 			}
 
-			return new RoomPackage(counter, heroPosition, heroEuler, enemiesPosition, enemiesEuler);	
+			return new RoomPackage(counter, heroPosition, heroEuler, enemiesPosition, enemiesEuler, gameOver);	
 		} else {
 			return null;
 		}

@@ -68,6 +68,9 @@ public class Player : Singleton<Player>
 			if (_roomPackageToCheck != null) {
 				this.transform.position = Vector3.Lerp (this.transform.position, _roomPackageToCheck.heroPosition, 0.01f);
 				this.transform.eulerAngles = Vector3.Lerp (this.transform.eulerAngles, _roomPackageToCheck.heroEuler, 0.01f);
+				if (_roomPackageToCheck.gameOver > 0) {
+					Player.Instance.gameOver (_roomPackageToCheck.gameOver == 1 ? true : false);
+				}
 			}
 
 		}
@@ -87,7 +90,7 @@ public class Player : Singleton<Player>
 	private float gameOverDuration = 3f;
 	private float gameOverDelta = 0f;
 	public void gameOver(bool win) {
-		Networking.Instance.gameOver();
+		Networking.Instance.gameOver(win);
 		int p = Networking.Instance.PlayerType;
 		endGamePanels [p - 1].SetActive (true);
 		if (win) {

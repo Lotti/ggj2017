@@ -41,7 +41,7 @@ public class IntelliScream : Singleton<IntelliScream> {
 		}
 		var rms = Mathf.Sqrt ( ( float )m / ( float )spectrum.Length );
 		var dB = 20 * Mathf.Log ( rms / rmsRef, 10f );
-		if ( dB >= -5f && !_isScreaming ) {
+		if ( dB >= -1f && !_isScreaming ) {
 			_isScreaming = true;
 			//Debug.LogWarning ( "STRILLOOOOO!!!" );
             fillBaR.fillAmount = 0;
