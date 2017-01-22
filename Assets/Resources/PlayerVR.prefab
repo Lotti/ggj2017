@@ -54,7 +54,7 @@ GameObject:
   - component: {fileID: 224406694553535848}
   - component: {fileID: 222627445385271714}
   - component: {fileID: 114441586338203962}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -105,7 +105,7 @@ GameObject:
   - component: {fileID: 224646269978004716}
   - component: {fileID: 222993144928047616}
   - component: {fileID: 114569658007591476}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: TextWin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -178,7 +178,7 @@ GameObject:
   - component: {fileID: 224402859697850208}
   - component: {fileID: 223938392261090438}
   - component: {fileID: 114186194098740544}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -213,7 +213,7 @@ GameObject:
   - component: {fileID: 224798864554680298}
   - component: {fileID: 222169365805231094}
   - component: {fileID: 114610380265289632}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: TextLose
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -282,7 +282,7 @@ GameObject:
   - component: {fileID: 222208969513904728}
   - component: {fileID: 114066323541359074}
   - component: {fileID: 114389630640305322}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: SpawnBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -450,7 +450,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294905855
+    m_Bits: 4294643711
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
