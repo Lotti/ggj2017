@@ -114,6 +114,7 @@ public class Networking : Singleton<Networking> {
 	public void playAsPlayer2(string topic) {
 		playerType = 2;
 		msgCounter = 0;
+		Debug.Log ("Subscribed to topic " + topic);
 		this.topic = topic;
 		client.Subscribe(new string[] { this.topic }, new byte[] { MqttMsgBase.QOS_LEVEL_AT_LEAST_ONCE });
 
