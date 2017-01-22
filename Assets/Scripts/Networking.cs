@@ -32,7 +32,8 @@ public class Networking : Singleton<Networking> {
 
 		clientId = Guid.NewGuid().ToString(); 
 		client.Connect(clientId); 
-		DontDestroyOnLoad (this.gameObject);
+
+		DontDestroyOnLoad(this.gameObject);
 	}
 
 	void Update() {
