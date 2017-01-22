@@ -6,7 +6,7 @@ using System;
 
 public class MenuManager : MonoBehaviour
 {
-	public GameObject menu, phoneButton, vrButton, panel, pin, inputField, code;
+	public GameObject menu, phoneButton, vrButton, panel, pin, inputField, code, backButton;
 	public enum SceneType { PHONE, VR };
 	private InputField inpF;
 	void Awake()
@@ -17,6 +17,10 @@ public class MenuManager : MonoBehaviour
         //phoneButton.GetComponent<Button>().onClick.AddListener(delegate { Play(SceneType.PHONE); });
         //vrButton.GetComponent<Button>().onClick.AddListener(delegate { Play(SceneType.VR); });
     }
+
+	void Start() {
+		panel.SetActive(false);
+	}
 
 	public void GOPiSandiMartr()
 	{
@@ -29,6 +33,7 @@ public class MenuManager : MonoBehaviour
 		phoneButton.SetActive (false);
 
 		panel.SetActive(true);
+		backButton.SetActive(true);
 		inputField.SetActive(false);
 		pin.SetActive(true);
 		code.GetComponent<Text>().text = Networking.Instance.playAsPlayer1();
@@ -39,12 +44,14 @@ public class MenuManager : MonoBehaviour
 		phoneButton.SetActive(false);
 
 		panel.gameObject.SetActive(true);
+		backButton.SetActive(true);
 		inputField.SetActive(true);
 		pin.SetActive(false);
     }
 
 	public void backToPlayerSelection() {
 		panel.gameObject.SetActive(false);
+		backButton.SetActive(false);
 		inputField.SetActive(false);
 		pin.SetActive(false);
 

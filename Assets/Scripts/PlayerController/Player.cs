@@ -14,6 +14,10 @@ public class Player : Singleton<Player>
 	public GameObject[] endGameWin;
 	public GameObject[] endGameLose;
 
+	void Awake() {
+		_instance = this;
+	}
+
 	void Start(){
 		isGameOver = false;
 		if (Networking.Instance.PlayerType == 1) {
