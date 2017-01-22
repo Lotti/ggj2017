@@ -14,7 +14,10 @@ public class MenuManager : MonoBehaviour
         //vrButton.GetComponent<Button>().onClick.AddListener(delegate { Play(SceneType.VR); });
     }
 
-    
+	public void GOPiSandiMartr()
+	{
+		UnityEngine.SceneManagement.SceneManager.LoadScene ("testShader2");
+	}
 
     public void Player1Start() {
 		panel.SetActive(true);
