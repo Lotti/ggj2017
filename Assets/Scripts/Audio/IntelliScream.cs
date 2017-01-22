@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.Audio;
 
 public class IntelliScream : MonoBehaviour {
 
@@ -13,10 +14,11 @@ public class IntelliScream : MonoBehaviour {
 	public static event Action OnScream;
 
 	public float rmsRef = 1f;
+	public AudioMixer mixer;
 
 	void Awake () {
 		audioS = GetComponent<AudioSource> ();
-
+        OnScream = VoiceLightShader2.Instance.SpawnVoice;
 	}
 
 	void Start () {
@@ -37,7 +39,7 @@ public class IntelliScream : MonoBehaviour {
 		}
 		var rms = Mathf.Sqrt ( ( float )m / ( float )spectrum.Length );
 		var dB = 20 * Mathf.Log ( rms / rmsRef, 10f );
-		if ( dB >= -3f && !_isScreaming ) {
+		if ( dB >= -5f && !_isScreaming ) {
 			_isScreaming = true;
 			Debug.LogWarning ( "STRILLOOOOO!!!" );
 			if ( OnScream != null ) {
