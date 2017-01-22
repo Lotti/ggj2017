@@ -166,9 +166,10 @@ public class Networking : Singleton<Networking> {
 	public string playAsPlayer1() {
 		playerType = 1;
 		msgCounter = 0;
-		this.topic = topicPrefix+UnityEngine.Random.Range(1111,9999).ToString();
+		string code = UnityEngine.Random.Range(1111,9999).ToString();
+		this.topic = topicPrefix+code;
 		client.Subscribe(new string[] { this.topic }, new byte[] { MqttMsgBase.QOS_LEVEL_AT_LEAST_ONCE });
-		return topic;
+		return code;
 	}
 
 	public void playAsPlayer2(string topic) {
