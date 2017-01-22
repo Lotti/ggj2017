@@ -107,7 +107,8 @@ public class Networking : Singleton<Networking> {
 		msgCounter = 0;
 		string code = UnityEngine.Random.Range(1111,9999).ToString();
 		this.topic = topicPrefix+code;
-		client.Subscribe(new string[] { this.topic }, new byte[] { MqttMsgBase.QOS_LEVEL_AT_LEAST_ONCE });
+		//client.Subscribe(new string[] { this.topic }, new byte[] { MqttMsgBase.QOS_LEVEL_AT_LEAST_ONCE });
+		Debug.Log ("subscribed to topic " + this.topic);
 		return code;
 	}
 
@@ -117,8 +118,7 @@ public class Networking : Singleton<Networking> {
 		Debug.Log ("Subscribed to topic " + topic);
 		this.topic = topic;
 		client.Subscribe(new string[] { this.topic }, new byte[] { MqttMsgBase.QOS_LEVEL_AT_LEAST_ONCE });
-
+		Debug.Log ("subscribed to topic " + this.topic);
 		UnityEngine.SceneManagement.SceneManager.LoadScene ("testShader2");
-
 	}
 }
