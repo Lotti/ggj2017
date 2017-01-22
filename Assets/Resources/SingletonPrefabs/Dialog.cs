@@ -47,7 +47,7 @@ public class Dialog : MonoBehaviour {
         if (Input.GetMouseButtonUp(0))
         {
             dialog.SetActive(true);
-            if (listCount < myJsonText.myContainer.Count)
+            if (listCount < myJsonText.myContainer.Count-1)
             {
                 ShowDialogStep(myJsonText.myContainer[listCount].imageUlr, myJsonText.myContainer[listCount].textUrl);
                 listCount++;

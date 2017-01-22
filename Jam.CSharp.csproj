@@ -240,6 +240,7 @@
     <Compile Include="Assets\Resources\SingletonPrefabs\Dialog.cs" />
     <Compile Include="Assets\Scripts\Audio\IntelliScream.cs" />
     <Compile Include="Assets\Scripts\GNEGNEGNE\EnemyManager.cs" />
+    <Compile Include="Assets\Scripts\GNEGNEGNE\ExitGateScript.cs" />
     <Compile Include="Assets\Scripts\GNEGNEGNE\FloorAntaniScript.cs" />
     <Compile Include="Assets\Scripts\GNEGNEGNE\Gnenemy.cs" />
     <Compile Include="Assets\Scripts\GNEGNEGNE\InGameManager.cs" />
