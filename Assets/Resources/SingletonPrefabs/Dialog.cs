@@ -22,7 +22,7 @@ public class JsonContainer
 public class Dialog : MonoBehaviour {
 
     public Image img;
-    public Text txt;
+	public TextTyper txt;
     JsonContainer myJsonText;
 
     public GameObject dialog;
@@ -37,7 +37,7 @@ public class Dialog : MonoBehaviour {
 
         listCount = 0;
 
-        dialog.SetActive(false);
+        //dialog.SetActive(false);
 
         StartCoroutine("StartAll");
     }
@@ -46,18 +46,19 @@ public class Dialog : MonoBehaviour {
     {
         if (Input.GetMouseButtonUp(0))
         {
-            dialog.SetActive(true);
-            if (listCount < myJsonText.myContainer.Count)
-            {
-                ShowDialogStep(myJsonText.myContainer[listCount].imageUlr, myJsonText.myContainer[listCount].textUrl);
-                listCount++;
-            }
-            else
-            {
-                //CAMBIA LIVeLLO
-                SceneManager.LoadScene("StartMenu");
-            }
-            
+			if (this.txt.isWriting) 
+			{
+				this.txt.ForceFinishWrite ();
+			} else {
+				//dialog.SetActive(true);
+				if (listCount < myJsonText.myContainer.Count - 1) {
+					ShowDialogStep (myJsonText.myContainer [listCount].imageUlr, myJsonText.myContainer [listCount].textUrl);
+					listCount++;
+				} else {
+					//CAMBIA LIVeLLO
+					SceneManager.LoadScene ("StartMenu");
+				}
+			}
            
         }
     }
@@ -70,14 +71,14 @@ public class Dialog : MonoBehaviour {
         if (listCount < myJsonText.myContainer.Count - 1)
         {
             listCount++;
-            dialog.SetActive(true);
+            //dialog.SetActive(true);
         }
     }
 
     void ShowDialogStep(string imgtoShow, string textToShow)
     {
         img.sprite = (Sprite)Resources.Load<Sprite>("Img/"+imgtoShow);
-        txt.text = textToShow;
+		txt.StartType( textToShow ) ;
     }
 }
 
