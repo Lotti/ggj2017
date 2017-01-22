@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using UnityEngine.Audio;
+using UnityEngine.UI;
 
 public class IntelliScream : MonoBehaviour {
 
@@ -10,6 +11,7 @@ public class IntelliScream : MonoBehaviour {
 	private bool _isScreaming = false;
 	private string MicString = "Built-in Microphone";
 	int freq = 44100;
+    public Image fillBaR;
 
 	public static event Action OnScream;
 
@@ -42,7 +44,9 @@ public class IntelliScream : MonoBehaviour {
 		if ( dB >= -5f && !_isScreaming ) {
 			_isScreaming = true;
 			Debug.LogWarning ( "STRILLOOOOO!!!" );
-			if ( OnScream != null ) {
+            fillBaR.fillAmount = 0;
+
+            if ( OnScream != null ) {
 				OnScream ();
 			}
 			StartCoroutine ( _WaitForScream() );
@@ -51,8 +55,11 @@ public class IntelliScream : MonoBehaviour {
 
 	IEnumerator _WaitForScream () {
 		float timeStart = Time.time;
-		while ( ( Time.time - timeStart ) <= 3f ) {
-			yield return null;
+        fillBaR.fillAmount = 0;
+        while ( ( Time.time - timeStart ) <= 5f )
+        {
+            fillBaR.fillAmount = (Time.time - timeStart)/5f;
+            yield return null;
 		}
 		Debug.LogWarning ( "XXX => STRILLOOOOO!!!" );
 		_isScreaming = false;
