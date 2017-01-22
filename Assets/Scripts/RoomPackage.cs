@@ -53,12 +53,12 @@ public class RoomPackage {
 			Vector3 heroEuler = new Vector3().FromList((List<object>) d["heroEuler"]);
 
 			List<Vector3> enemiesPosition = new List<Vector3>();
-			foreach (List<object> e in (List<List<object>>) d["enemiesPosition"]) {
+			foreach (List<object> e in (List<object>) d["enemiesPosition"]) {
 				enemiesPosition.Add(new Vector3().FromList(e));
 			}
 
 			List<Vector3> enemiesEuler = new List<Vector3>();
-			foreach (List<object> e in (List<List<object>>) d["enemiesEuler"]) {
+			foreach (List<object> e in (List<object>) d["enemiesEuler"]) {
 				enemiesEuler.Add(new Vector3().FromList(e));
 			}
 
