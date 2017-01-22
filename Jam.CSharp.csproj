@@ -234,8 +234,7 @@
     <Compile Include="Assets\Libraries\TouchScript\Scripts\Utils\TouchUtils.cs" />
     <Compile Include="Assets\Libraries\TouchScript\Scripts\Utils\TransformUtils.cs" />
     <Compile Include="Assets\Resources\SingletonPrefabs\Dialog.cs" />
-    <Compile Include="Assets\Scripts\Audio\F1_MicStreamer.cs" />
-    <Compile Include="Assets\Scripts\Audio\MicrophoneClass.cs" />
+    <Compile Include="Assets\Scripts\Audio\IntelliScream.cs" />
     <Compile Include="Assets\Scripts\GNEGNEGNE\FloorAntaniScript.cs" />
     <Compile Include="Assets\Scripts\GNEGNEGNE\Gnenemy.cs" />
     <Compile Include="Assets\Scripts\GNEGNEGNE\WallAntaniScript.cs" />
