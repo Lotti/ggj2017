@@ -96,13 +96,12 @@ public class Networking : Singleton<Networking> {
 		}
 		Transform p = Player.Instance.transform;
 		RoomPackage rp = new RoomPackage(++msgCounter, p.position, p.eulerAngles, enemiesPosition, enemiesEuler);
-		sendMessage(this.topic, rp.ToString());
-	}
-		
-	void sendMessage(string topic, string message) {
-		client.Publish(topic, System.Text.Encoding.UTF8.GetBytes(message), MqttMsgBase.QOS_LEVEL_AT_LEAST_ONCE, true);
-	}
 
+		string msg = rp.ToJSON();
+		client.Publish(this.topic, System.Text.Encoding.UTF8.GetBytes(msg), MqttMsgBase.QOS_LEVEL_AT_LEAST_ONCE, true);
+		Debug.Log("Message sent: " + this.topic + " - " + msg);
+	}	
+	
 	public string playAsPlayer1() {
 		playerType = 1;
 		msgCounter = 0;
