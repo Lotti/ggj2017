@@ -113,4 +113,10 @@ public class Player : Singleton<Player>
 			}
 		}
 	}
+
+	void OnTriggerEnter(Collider c) {
+		if (c.CompareTag("Enemy")) {
+			gameOver(false);
+		}
+	}
 }
