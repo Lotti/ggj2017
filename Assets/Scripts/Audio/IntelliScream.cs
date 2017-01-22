@@ -18,7 +18,7 @@ public class IntelliScream : MonoBehaviour {
 
 	void Awake () {
 		audioS = GetComponent<AudioSource> ();
-
+        OnScream = VoiceLightShader2.Instance.SpawnVoice;
 	}
 
 	void Start () {
