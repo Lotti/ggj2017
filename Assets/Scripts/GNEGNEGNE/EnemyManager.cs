@@ -21,31 +21,16 @@ public class EnemyManager : Singleton<EnemyManager> {
 			Networking.Instance.incomingData -= applyIncomingData; 
 	}
 
-	void applyIncomingData(RoomPackage rp) {
-		while (enemies.Count < rp.enemiesPosition.Count) 
-		{
-			Spawn ();
-		}
+	RoomPackage _roomPackageToCheck=null;
 
-		while (enemies.Count > rp.enemiesPosition.Count) 
-		{
-			var todestroy = enemies[enemies.Count - 1];
-			enemies.RemoveAt(enemies.Count - 1);
-			Destroy(todestroy.gameObject);
-		}
+	void applyIncomingData( RoomPackage rp ) {
+		this._roomPackageToCheck = rp;
 
-		for (int i = 0; i < rp.enemiesPosition.Count; i++) {
-			enemies[i].transform.position = rp.enemiesPosition [i];
-		}
-		for (int i = 0; i < rp.enemiesEuler.Count; i++) {
-			enemies[i].transform.eulerAngles = rp.enemiesEuler[i];
-		}
 	}
 
 	void Update () 
 	{
-		if (Networking.Instance.PlayerType == 1) 
-		{
+		if (Networking.Instance.PlayerType == 1) {
 			if (lastTimeUpdate == 0 || lastTimeUpdate >= 10f) {
 				lastTimeUpdate = 0;
 
@@ -53,6 +38,29 @@ public class EnemyManager : Singleton<EnemyManager> {
 			}
 			lastTimeUpdate += Time.deltaTime;
 		} 
+		else if(_roomPackageToCheck!=null)
+		{
+			while (enemies.Count < _roomPackageToCheck.enemiesPosition.Count) 
+			{
+				Spawn ();
+			}
+
+			while (enemies.Count > _roomPackageToCheck.enemiesPosition.Count) 
+			{
+				var todestroy = enemies[enemies.Count - 1];
+				enemies.RemoveAt(enemies.Count - 1);
+				Destroy(todestroy.gameObject);
+			}
+
+			for (int i = 0; i < _roomPackageToCheck.enemiesPosition.Count; i++) {
+				enemies[i].transform.position = _roomPackageToCheck.enemiesPosition [i];
+			}
+			for (int i = 0; i < _roomPackageToCheck.enemiesEuler.Count; i++) {
+				enemies[i].transform.eulerAngles = _roomPackageToCheck.enemiesEuler[i];
+			}
+
+			_roomPackageToCheck = null;
+		}
 	}
 
 	void Spawn()
