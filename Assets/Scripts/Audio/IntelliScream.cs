@@ -19,8 +19,8 @@ public class IntelliScream : Singleton<IntelliScream> {
 	public AudioMixer mixer;
 
 	void Awake () {
-		audioS = GetComponent<AudioSource> ();
-
+		_instance = this;
+		audioS = GetComponent<AudioSource>();
 	}
 
 	void Start () {

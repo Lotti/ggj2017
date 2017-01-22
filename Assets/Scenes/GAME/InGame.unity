@@ -1987,7 +1987,7 @@ GameObject:
   - component: {fileID: 230185283}
   - component: {fileID: 230185285}
   - component: {fileID: 230185284}
-  m_Layer: 19
+  m_Layer: 5
   m_Name: Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9019,7 +9019,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 4294180863
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -12090,7 +12090,7 @@ GameObject:
   - component: {fileID: 1256364027}
   - component: {fileID: 1256364029}
   - component: {fileID: 1256364028}
-  m_Layer: 19
+  m_Layer: 5
   m_Name: TextWin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12416,6 +12416,10 @@ Prefab:
       propertyPath: endGameLose.Array.data[1]
       value: 
       objectReference: {fileID: 1869862039}
+    - target: {fileID: 1420579713059430, guid: 196147b5d9ecee748af74602dcdd3621, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 196147b5d9ecee748af74602dcdd3621, type: 2}
   m_IsPrefabParent: 0
@@ -16472,7 +16476,7 @@ GameObject:
   - component: {fileID: 1869862040}
   - component: {fileID: 1869862042}
   - component: {fileID: 1869862041}
-  m_Layer: 19
+  m_Layer: 5
   m_Name: TextLose
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17781,7 +17785,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4055106841988404, guid: f222b322d545143ac9d8d7d826172dc0, type: 2}
       propertyPath: m_RootOrder
-      value: 34
+      value: 33
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f222b322d545143ac9d8d7d826172dc0, type: 2}

@@ -20,9 +20,6 @@ public class Player : Singleton<Player>
 
 	void Start(){
 		isGameOver = false;
-		if (Networking.Instance.PlayerType == 1) {
-			IntelliScream.Instance.OnScream += VoiceLightShader2.Instance.SpawnVoice;	
-		}
 	}
 	void OnEnable() {
 		if(Networking.IsInstanced())
@@ -40,13 +37,19 @@ public class Player : Singleton<Player>
 	void applyIncomingData( RoomPackage rp ) {
 		this._roomPackageToCheck = rp;
 	}
-    // Update is called once per frame
+    
+	private bool firstRun = true;
     void Update ()
     {
+		if (firstRun && Networking.Instance.PlayerType == 1) {
+			firstRun = false;
+			IntelliScream.Instance.OnScream += VoiceLightShader2.Instance.SpawnVoice;	
+		}
+
 		if (Networking.Instance.PlayerType == 1) {
 			//TELEPORT 
 			if (Input.GetMouseButtonDown (0)) {
-				if (Physics.Raycast (Camera.main.transform.position, Camera.main.transform.forward, out hit, 100f, floorMask)) {
+				if (Physics.Raycast (Camera.main.transform.position, Camera.main.transform.forward, out hit, 10f, floorMask)) {
 					if (VoiceLightShader2.Instance.isThisPositionOk (hit.point))
 						this.transform.position = new Vector3 (hit.point.x, hit.point.y + this.height, hit.point.z);
 
@@ -81,7 +84,7 @@ public class Player : Singleton<Player>
     }
 		
 	private bool isGameOver = false;
-	private float gameOverDuration = 5f;
+	private float gameOverDuration = 3f;
 	private float gameOverDelta = 0f;
 	public void gameOver(bool win) {
 		Networking.Instance.gameOver();
@@ -94,6 +97,7 @@ public class Player : Singleton<Player>
 			endGameWin [p - 1].SetActive (false);
 			endGameLose [p - 1].SetActive (true);
 		}
+		isGameOver = true;
 	}
 
 	void OnTriggerEnter(Collider c) {

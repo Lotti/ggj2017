@@ -22,7 +22,6 @@ GameObject:
   - component: {fileID: 33612654388321306}
   - component: {fileID: 65340657430756540}
   - component: {fileID: 23737784330665842}
-  - component: {fileID: 114470920545696848}
   m_Layer: 10
   m_Name: Exit
   m_TagString: Floor
@@ -41,7 +40,8 @@ GameObject:
   - component: {fileID: 33699443866886538}
   - component: {fileID: 136465615760902470}
   - component: {fileID: 23934831993081052}
-  m_Layer: 10
+  - component: {fileID: 114431315033305136}
+  m_Layer: 0
   m_Name: Portal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -70,7 +70,7 @@ Transform:
   m_GameObject: {fileID: 1825203455691028}
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 3, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.025, z: 5}
+  m_LocalScale: {x: 0.4897525, y: 0.025, z: 4.897525}
   m_Children: []
   m_Father: {fileID: 4055106841988404}
   m_RootOrder: 0
@@ -163,12 +163,12 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &114470920545696848
+--- !u!114 &114431315033305136
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1247529251330300}
+  m_GameObject: {fileID: 1825203455691028}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a9c6a9f53ed8942c28c71df0dfe4736b, type: 3}
@@ -181,7 +181,7 @@ CapsuleCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1825203455691028}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 2
   m_Height: 2
